@@ -16,7 +16,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
@@ -32,12 +31,10 @@ public class Pergunta implements Serializable {
     private Long id;
     
     @NotNull
-    @NotBlank
     @Column(name = "TXT_PERGUNTA", nullable = false, length = 2000)
     private String pergunta;
     
     @NotNull
-    @NotBlank
     @OneToMany(mappedBy ="pergunta" ,fetch = LAZY,
             cascade = ALL, orphanRemoval = false)
     private List<RespostasAvaliacao> respostas;

@@ -23,7 +23,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
-import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
@@ -41,7 +40,15 @@ import org.hibernate.validator.constraints.NotBlank;
     @NamedQuery(
             name  = PersonalTrainer.CONSULTAR_POR_ID,
             query = "SELECT pt FROM Usuario pt WHERE pt.id = ?1"
-    )
+    ),
+     @NamedQuery(
+                    name = PersonalTrainer.PERSONALS,
+                    query = "SELECT a FROM PersonalTrainer a ORDER BY a.nome"
+            ),
+    @NamedQuery(
+            name  = PersonalTrainer.CONSULTAR_POR_LOGIN,
+            query = "SELECT pt FROM Usuario pt WHERE pt.login = ?1 and  pt.senha = ?1" 
+    ),
 })
 
 public class PersonalTrainer extends Usuario implements Serializable {
@@ -53,6 +60,7 @@ public class PersonalTrainer extends Usuario implements Serializable {
     public static final String CONSULTAR_POR_LOGIN = "ConsultarPorLogin";
     public static final String QUANTIDADE_PERSONAL_TRAINER = "QuantidadePersonalTrainer";
     public static final String REMOVER_POR_ID = "RemoverPorID";
+    public static final String PERSONALS = "Personals";
     /*
     
      */

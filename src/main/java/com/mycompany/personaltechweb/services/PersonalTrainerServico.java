@@ -7,6 +7,8 @@ package com.mycompany.personaltechweb.services;
 
 import com.mycompany.personaltechweb.entities.Aluno;
 import com.mycompany.personaltechweb.entities.PersonalTrainer;
+import static com.mycompany.personaltechweb.entities.PersonalTrainer.CONSULTAR_POR_LOGIN;
+import static com.mycompany.personaltechweb.entities.PersonalTrainer.PERSONALS;
 import static com.mycompany.personaltechweb.entities.PersonalTrainer.QUANTIDADE_PERSONAL_TRAINER;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -42,5 +44,13 @@ public class PersonalTrainerServico extends ServicoUsuario<PersonalTrainer> {
     @TransactionAttribute(SUPPORTS)
     public List<PersonalTrainer> quantidadePersonalTrainer() {
         return super.consultarEntidades(new Object[]{}, QUANTIDADE_PERSONAL_TRAINER);
+    }
+      @TransactionAttribute(SUPPORTS)
+    public List<PersonalTrainer> getPersonals() {
+        return getEntidades(PERSONALS);
+    }
+     @TransactionAttribute(SUPPORTS)
+    public List<PersonalTrainer> consultarPorLogin (@NotBlank String login, @NotBlank String senha) {
+        return super.consultarEntidades(new Object[]{login,senha}, CONSULTAR_POR_LOGIN);
     }
 }

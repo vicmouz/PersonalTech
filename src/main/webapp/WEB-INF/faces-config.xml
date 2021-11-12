@@ -22,6 +22,13 @@
             <to-view-id>/caddeAluno.xhtml</to-view-id>
         </navigation-case>  
     </navigation-rule>
+     <navigation-rule>
+        <from-view-id>index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>cadPersonal</from-outcome>
+            <to-view-id>caddeProfessor.xhtml</to-view-id>
+        </navigation-case>  
+    </navigation-rule>
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
@@ -29,6 +36,29 @@
             <to-view-id>/listadeAlunos.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listaProfessor</from-outcome>
+            <to-view-id>/listadeProfessor.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>LoginProfessor</from-outcome>
+            <to-view-id>loginProfessor.xhtml</to-view-id>
+        </navigation-case>  
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listaProfessor</from-outcome>
+            <to-view-id>/listadeProfessor.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
     <navigation-rule>
         <from-view-id>/listadeAlunos.xhtml</from-view-id>
         <navigation-case>
@@ -37,7 +67,25 @@
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
+        <from-view-id>/listadeProfessor.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>pagInicial</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+   
+    
+    
+    <navigation-rule>
         <from-view-id>/caddeAluno.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>pagInicial</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/caddeProfessor.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>pagInicial</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>

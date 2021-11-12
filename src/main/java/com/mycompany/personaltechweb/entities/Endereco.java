@@ -7,7 +7,6 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
@@ -21,13 +20,11 @@ public class Endereco implements Serializable {
     
     
     @NotNull
-    @NotBlank
     @Size(max = 150)
     @Column(name = "END_TXT_LOGRADOURO", length = 150, nullable = false)
     private String logradouro;
     
     @NotNull
-    @NotBlank
     @Size(max = 150)
     @Column(name = "END_TXT_BAIRRO", length = 150, nullable = false)
     private String bairro;
@@ -44,18 +41,15 @@ public class Endereco implements Serializable {
     private String complemento;
 
     @NotNull
-    @NotBlank
     @Size(max = 20)
     @Column(name = "END_TXT_CEP", length = 20, nullable = false)
     private String cep;
     
     @NotNull
-    @NotBlank
     @Size(max = 50)
     @Column(name = "END_TXT_CIDADE", length = 50, nullable = false)
     private String cidade;
     
-    @NotBlank
     @Size(min = 2, max = 2)
     @Column(name = "END_TXT_ESTADO", length = 2, nullable = false)
     private String estado;

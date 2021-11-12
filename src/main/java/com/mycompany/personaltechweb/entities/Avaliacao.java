@@ -26,7 +26,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
@@ -60,7 +59,6 @@ public static final String AVALIACAO = "Avaliacao";
     private Aluno aluno;
 
     @NotNull
-    @NotBlank
     @Size(max = 50)
     @Column(name = "TXT_NOME_PT", length = 50, nullable = false)
     private String nome_personal;
