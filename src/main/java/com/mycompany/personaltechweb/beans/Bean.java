@@ -33,6 +33,7 @@ public abstract class Bean<T extends Usuario> {
     public String salvar() {
         try {
             boolean sucesso = salvar(entidade);
+            System.out.println(entidade);
             if (sucesso) {
                 adicionarMessagem(FacesMessage.SEVERITY_INFO, "Cadastro realizado com sucesso!");
                 return "listadeAlunos?faces-redirect=true";

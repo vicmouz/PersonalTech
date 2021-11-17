@@ -12,9 +12,9 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  <!-- <glassfish.embedded-static-shell.jar>/home/victor/Documentos/GlassFish_Server/glassfish/lib/embedded/glassfish-embedded-static-shell.jar</glassfish.embedded-static-shell.jar>-->
+        <glassfish.embedded-static-shell.jar>C:\Users/Victor Mouzinho/Documents/GlassFish_Server/glassfish/lib/embedded/glassfish-embedded-static-shell.jar</glassfish.embedded-static-shell.jar>
 
-        <glassfish.embedded-static-shell.jar>C:/Users/T-Gamer/GlassFish_Server2/glassfish/lib/embedded/glassfish-embedded-static-shell.jar</glassfish.embedded-static-shell.jar>
+        <!--<glassfish.embedded-static-shell.jar>C:/Users/T-Gamer/GlassFish_Server2/glassfish/lib/embedded/glassfish-embedded-static-shell.jar</glassfish.embedded-static-shell.jar>-->
     </properties>
     
     <dependencies>
