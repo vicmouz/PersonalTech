@@ -5,18 +5,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import javax.persistence.CascadeType;
 import static javax.persistence.CascadeType.PERSIST;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import static javax.persistence.FetchType.LAZY;
 import javax.persistence.JoinColumn;
-import javax.persistence.NamedNativeQueries;
-import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -117,7 +113,7 @@ public class PersonalTrainer extends Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.personaltech.Exercicio[ id=" + id + " ]";
+        return "Personal";
     }
 
 }

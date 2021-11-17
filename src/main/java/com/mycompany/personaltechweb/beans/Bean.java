@@ -10,9 +10,9 @@ public abstract class Bean<T extends Usuario> {
     protected T entidade;
 
     protected abstract boolean salvar(T entidade);
-    
-    protected abstract boolean atualizar(T entidade); 
-    
+
+    protected abstract boolean atualizar(T entidade);
+
     protected abstract boolean deletar(T entidade);
 
     @PostConstruct
@@ -33,8 +33,10 @@ public abstract class Bean<T extends Usuario> {
     public String salvar() {
         try {
             boolean sucesso = salvar(entidade);
-            System.out.println(entidade);
-            if (sucesso) {
+            if (sucesso && entidade.toString().equalsIgnoreCase("Personal")) {
+                adicionarMessagem(FacesMessage.SEVERITY_INFO, "Cadastro realizado com sucesso!");
+                return "listadeProfessor?faces-redirect=true";
+            } else {
                 adicionarMessagem(FacesMessage.SEVERITY_INFO, "Cadastro realizado com sucesso!");
                 return "listadeAlunos?faces-redirect=true";
             }
@@ -44,33 +46,34 @@ public abstract class Bean<T extends Usuario> {
         } finally {
             iniciarCampos();
         }
-        return "listadeAlunos?faces-redirect=true";
+        return "index.xhtml";
     }
-    
+
     public String atualizar() {
         try {
             boolean sucesso = atualizar(entidade);
-            if (sucesso) {
+            if (sucesso && entidade.toString().equalsIgnoreCase("Personal")) {
+                adicionarMessagem(FacesMessage.SEVERITY_INFO, "Alteração Realizada com sucesso!");
+                return "listadeProfessor?faces-redirect=true";
+            } else {
                 adicionarMessagem(FacesMessage.SEVERITY_INFO, "Alteração Realizada com sucesso!");
                 return "listadeAlunos?faces-redirect=true";
             }
         } catch (Exception ex) {
             //adicionarMessagem(FacesMessage.SEVERITY_WARN, ex.getMessage());
             adicionarMessagem(FacesMessage.SEVERITY_WARN, "Ocorreu um erro!");
-            return "listadeAlunos?faces-redirect=true";
-        } finally {
-            
+            return "index.xhtml";
         }
-        return "listadeAlunos?faces-redirect=true";
+
     }
-    
+
     public String deletar() {
         try {
             boolean sucesso = deletar(entidade);
             if (sucesso) {
                 adicionarMessagem(FacesMessage.SEVERITY_INFO, "Exclusão realizada com sucesso!");
-            } 
-            
+            }
+
         } catch (Exception ex) {
             //adicionarMessagem(FacesMessage.SEVERITY_WARN, ex.getMessage());
             adicionarMessagem(FacesMessage.SEVERITY_WARN, "Ocorreu um erro!");
