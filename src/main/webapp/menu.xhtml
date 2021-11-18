@@ -8,30 +8,35 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:p="http://primefaces.org/ui">
     <p:menubar>
-        <p:menuitem
-            value ="Cadastrar Aluno"
-            outcome="cadAluno"
-            icon  ="ui-icon-circle-plus"
-            />
-        <p:menuitem
-            value ="Listar Aluno"
-            outcome="listaAluno"
-            icon  ="ui-icon-note"
-            />
-        <p:menuitem
-            value ="Listar Personal"
-            outcome="listaProfessor"
-            icon  ="ui-icon-note"
-            />
-         <p:menuitem
-            value ="Login Professor"
-            outcome="LoginProfessor"
-            icon  ="id-card"
-            />
-         <p:menuitem
-            value ="Cadastrar Personal Trainer"
-            outcome="cadPersonal"
-            icon  ="ui-icon-circle-plus"
-            />
+        <p:submenu label="Aluno">
+            <p:menuitem
+                value ="Cadastrar Aluno"
+                outcome="cadAluno"
+                icon  ="ui-icon-circle-plus"
+                />
+            <p:menuitem
+                value ="Listar Aluno"
+                outcome="listaAluno"
+                icon  ="ui-icon-note"
+                />
+        </p:submenu>
+        <p:submenu label="Personal">
+            <p:menuitem
+                value ="Cadastrar Personal"
+                outcome="cadPersonal"
+                icon  ="ui-icon-circle-plus"
+                />
+            <p:menuitem
+                value ="Listar Personal"
+                outcome="listaProfessor"
+                icon  ="ui-icon-note"
+                />
+            <p:menuitem
+                value ="Login Personal"
+                outcome="LoginProfessor"
+                icon  ="id-card"
+                />
+        </p:submenu>
+
     </p:menubar>
 </html>
