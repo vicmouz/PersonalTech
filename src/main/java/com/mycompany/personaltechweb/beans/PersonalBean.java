@@ -50,7 +50,7 @@ public class PersonalBean extends Bean<PersonalTrainer> implements Serializable 
     
     public String editar(PersonalTrainer personal) {        
         entidade = personalServico.consultarPorId(personal.getId());        
-        return "alterarPersonal";       
+        return "alterarProfessor";       
     }
     
     @Override

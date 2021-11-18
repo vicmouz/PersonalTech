@@ -10,71 +10,57 @@
         <h:form id="menu">
         <ui:include src="/menuSecundario.xhtml" />
             <p:separator />
-            <p:panel id="panel" header="Cadastrar Aluno" footer="PersonalTech">
+            <p:panel id="panel" header="Atualizar Personal" footer="PersonalTech">
                 <p:panelGrid columns="3" >
 
                     <h:outputLabel for="primeiroNome" value="Primeiro Nome: " />
-                    <p:inputText id="primeiroNome" value="#{AlunoBean.entidade.nome}" label="Primeiro nome" required="true" maxlength="20"/>
+                    <p:inputText id="primeiroNome" value="#{PersonalBean.entidade.nome}" label="Primeiro nome" required="true" maxlength="20"/>
                     <p:message id="msgPrimeiroNome" for="primeiroNome"/>
-                    
                     <h:outputLabel for="ultimoNome" value="Último Nome: " />
-                    <p:inputText id="ultimoNome" value="#{AlunoBean.entidade.sobrenome}" label="Último nome" required="true" maxlength="20"/>
+                    <p:inputText id="ultimoNome" value="#{PersonalBean.entidade.sobrenome}" label="Último nome" required="true" maxlength="20"/>
                     <p:message id="msgUltimoNome" for="ultimoNome"/>
-                    
                     <h:outputLabel for="cpf" value="CPF: " />
-                    <p:inputMask id="cpf" value="#{AlunoBean.entidade.cpf}" label="CPF" mask="999.999.999-99" required="true" maxlength="14"/>
+                    <p:inputMask id="cpf" value="#{PersonalBean.entidade.cpf}" label="CPF" mask="999.999.999-99" required="true" maxlength="14"/>
                     <p:message id="msgCpf" for="cpf"/>
-                    
                     <h:outputLabel for="sexo" value="Sexo: " />
-                    <p:inputText id="sexo" value="#{AlunoBean.entidade.sexo}" label="Sexo" required="true" maxlength="14"/>
+                    <p:inputText id="sexo" value="#{PersonalBean.entidade.sexo}" label="Sexo" required="true" maxlength="14"/>
                     <p:message id="msgSexo" for="sexo"/>
-                    
                     <h:outputLabel for="email" value="Email: " />
-                    <p:inputText id="email" value="#{AlunoBean.entidade.email}" label="Email" required="true" maxlength="24"/>
+                    <p:inputText id="email" value="#{PersonalBean.entidade.email}" label="Email" required="true" maxlength="24"/>
                     <p:message id="msgEmail" for="email"/>
-                    
                     <h:outputLabel for="dataNasc" value="Data de Nascimento: " />
-                    <p:calendar id="dataNasc" value="#{AlunoBean.entidade.dataNascimento}" ></p:calendar>
+                    <p:calendar id="dataNasc" value="#{PersonalBean.entidade.dataNascimento}" ></p:calendar>
                     <p:message id="msgDataNasc" for="dataNasc"/>
-                    
                     <h:outputLabel for="login" value="Login: " />
-                    <p:inputText id="login" value="#{AlunoBean.entidade.login}" label="Login" required="true" maxlength="14"/>
+                    <p:inputText id="login" value="#{PersonalBean.entidade.login}" label="Login" required="true" maxlength="14"/>
                     <p:message id="msgLogin" for="login"/>
-                    
                     <h:outputLabel for="senha" value="Senha: " />
-                    <p:inputText id="senha" value="#{AlunoBean.entidade.senha}" label="Senha" required="true" maxlength="14"/>
+                    <p:inputText id="senha" value="#{PersonalBean.entidade.senha}" label="Senha" required="true" maxlength="14"/>
                     <p:message id="msgSenha" for="senha"/>
-                    
                     <h:outputLabel for="bairro" value="Bairro: " />
-                    <p:inputText id="bairro" value="#{AlunoBean.entidade.endereco.bairro}" label="Bairro" required="true" maxlength="14"/>
+                    <p:inputText id="bairro" value="#{PersonalBean.entidade.endereco.bairro}" label="Bairro" required="true" maxlength="14"/>
                     <p:message id="msgBairro" for="bairro"/>
-                    
                     <h:outputLabel for="cep" value="CEP: " />
-                    <p:inputText id="cep" value="#{AlunoBean.entidade.endereco.cep}" label="CEP" required="true" maxlength="14"/>
+                    <p:inputText id="cep" value="#{PersonalBean.entidade.endereco.cep}" label="CEP" required="true" maxlength="14"/>
                     <p:message id="msgCep" for="cep"/>
-                    
                     <h:outputLabel for="cidade" value="Cidade: " />
-                    <p:inputText id="cidade" value="#{AlunoBean.entidade.endereco.cidade}" label="Cidade" required="true" maxlength="14"/>
+                    <p:inputText id="cidade" value="#{PersonalBean.entidade.endereco.cidade}" label="Cidade" required="true" maxlength="14"/>
                     <p:message id="msgCidade" for="cidade"/>
-                    
                     <h:outputLabel for="estado" value="Estado: " />
-                    <p:inputText id="estado" value="#{AlunoBean.entidade.endereco.estado}" label="Estado" required="true" maxlength="14"/>
+                    <p:inputText id="estado" value="#{PersonalBean.entidade.endereco.estado}" label="Estado" required="true" maxlength="14"/>
                     <p:message id="msgEstado" for="estado"/>
-
                     <h:outputLabel for="rua" value="Rua: " />
-                    <p:inputText id="rua" value="#{AlunoBean.entidade.endereco.logradouro}" label="Rua" required="true" maxlength="14"/>
+                    <p:inputText id="rua" value="#{PersonalBean.entidade.endereco.logradouro}" label="Rua" required="true" maxlength="14"/>
                     <p:message id="msgRua" for="rua"/>
-                    
-                    
                     <h:outputLabel for="numero" value="Numero: " />
-                    <p:inputText type="number" id="numero" value="#{AlunoBean.entidade.endereco.numero}" label="Numero" required="false" maxlength="14"/>
+                    <p:inputText type="number" id="numero" value="#{PersonalBean.entidade.endereco.numero}" label="Numero" required="false" maxlength="14"/>
                     <p:message id="msgNumero" for="numero"/>
                     <!--begin GAMBIARRA -->
-                    <h:inputHidden value="#{AlunoBean.entidade.id}"  />
+                    <h:inputHidden value="#{PersonalBean.entidade.id}"  />
                     <!--end GAMBIARRA -->
                 </p:panelGrid>
                 <br />
-                <p:commandButton action="#{AlunoBean.atualizar}" value="Salvar" ajax="true" update="panel"/>
+                <p:commandButton action="#{PersonalBean.atualizar}" value="Salvar" ajax="true" update="panel"/>
             </p:panel>
         </h:form>
     </h:body>
