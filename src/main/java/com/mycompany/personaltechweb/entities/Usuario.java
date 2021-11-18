@@ -29,6 +29,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.br.CPF;
 
 
 /**
@@ -67,6 +68,7 @@ public abstract class Usuario implements Serializable {
     @Size(max = 50)
     @Column(name = "TXT_SOBRENOME", length = 50, nullable = false)
     private String sobrenome;
+    @CPF
     @Column(name = "TXT_CPF", length = 14, unique = true, nullable = false)
     private String cpf;
     @NotNull
