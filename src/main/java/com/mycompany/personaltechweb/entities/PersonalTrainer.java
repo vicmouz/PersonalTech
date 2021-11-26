@@ -44,7 +44,8 @@ import javax.validation.constraints.Size;
     @NamedQuery(
             name  = PersonalTrainer.CONSULTAR_POR_LOGIN,
             query = "SELECT pt FROM Usuario pt WHERE pt.login = ?1 and  pt.senha = ?1" 
-    ),
+    )
+    
 })
 
 public class PersonalTrainer extends Usuario implements Serializable {

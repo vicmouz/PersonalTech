@@ -25,12 +25,12 @@ and open the template in the editor.
                     <f:facet name="header">Login</f:facet>
                     <h:panelGrid columns="2">
                         Login:
-                        <h:inputText id="txLogin" value="#{PersonalBean.entidade.login}" required="true" label="login"/>
+                        <h:inputText id="txLogin" value="#{AlunoBean.entidade.login}" required="true" label="login"/>
                         Senha:
-                        <h:inputSecret id="txSenha" value="#{PersonalBean.entidade.senha}" required="true" label="Senha"/>
+                        <h:inputSecret id="txSenha" value="#{AlunoBean.entidade.senha}" required="true" label="Senha"/>
 
                     </h:panelGrid>
-                    <p:commandButton value="Logar" action ="#{PersonalBean.efetuaLogin(entidade)}" ajax="false"/>
+                    <p:commandButton value="Logar" action ="#{AlunoBean.efetuaLogin(entidade)}" ajax="false"/>
                 </p:panel>
 
             </h:form>

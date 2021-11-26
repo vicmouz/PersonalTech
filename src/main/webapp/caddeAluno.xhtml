@@ -12,7 +12,7 @@
             <p:separator />
             <p:panel id="panel" header="Personal Tech - Cadastrar aluno" footer="PersonalTech">
                 <p:panelGrid columns="3" >
-
+                    
                     <h:outputLabel for="primeiroNome" value="Primeiro Nome: " />
                     <p:inputText id="primeiroNome" value="#{AlunoBean.entidade.nome}" label="Primeiro nome" required="true" maxlength="20"/>
                     <p:message id="msgPrimeiroNome" for="primeiroNome"/>
@@ -32,7 +32,7 @@
                     <h:outputLabel for="email" value="Email: " />
                     <p:inputText id="email" value="#{AlunoBean.entidade.email}" label="Email" required="true" maxlength="24"/>
                     <p:message id="msgEmail" for="email"/>
-
+                    
                     <h:outputLabel for="dataNasc" value="Data de Nascimento: " />
                     <p:calendar id="dataNasc" value="#{AlunoBean.entidade.dataNascimento}" ></p:calendar>
                     <p:message id="msgDataNasc" for="dataNasc"/>

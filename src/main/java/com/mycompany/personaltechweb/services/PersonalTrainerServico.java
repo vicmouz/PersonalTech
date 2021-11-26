@@ -16,6 +16,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import static javax.ejb.TransactionAttributeType.SUPPORTS;
+import javax.validation.constraints.NotNull;
 import javax.validation.executable.ExecutableType;
 import static javax.validation.executable.ExecutableType.ALL;
 import javax.validation.executable.ValidateOnExecution;
@@ -53,4 +54,5 @@ public class PersonalTrainerServico extends ServicoUsuario<PersonalTrainer> {
     public List<PersonalTrainer> consultarPorLogin (@NotBlank String login, @NotBlank String senha) {
         return super.consultarEntidades(new Object[]{login,senha}, CONSULTAR_POR_LOGIN);
     }
+   
 }

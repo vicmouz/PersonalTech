@@ -7,8 +7,10 @@ package com.mycompany.personaltechweb.services;
 
 import com.mycompany.personaltechweb.entities.Aluno;
 import static com.mycompany.personaltechweb.entities.Aluno.ALUNOS;
+import static com.mycompany.personaltechweb.entities.Aluno.ALUNOSSEMPERSONAL;
 import static com.mycompany.personaltechweb.entities.Aluno.ALUNOS_POR_SEXO;
 import static com.mycompany.personaltechweb.entities.Aluno.ALUNO_POR_CPF;
+import static com.mycompany.personaltechweb.entities.Aluno.CONSULTAR_ALUNO_POR_PERSONAL;
 import com.mycompany.personaltechweb.entities.Endereco;
 import com.mycompany.personaltechweb.entities.TipoExercicio;
 import java.util.List;
@@ -48,14 +50,14 @@ public class AlunoServico extends ServicoUsuario<Aluno> {
     }
     
 
-    @Override
-    public boolean existe(@NotNull Aluno usuario) {
+/*     @Override
+   public boolean existe(@NotNull Aluno usuario) {
         TypedQuery<Aluno> query
                 = entityManager.createNamedQuery(ALUNO_POR_CPF, classe);
         query.setParameter(1, usuario.getCpf());
         return !query.getResultList().isEmpty();
     }
-
+*/
     @TransactionAttribute(SUPPORTS)
     public Aluno consultarPorCPF(@CPF String cpf) {
         return super.consultarEntidade(new Object[]{cpf}, ALUNO_POR_CPF);
@@ -80,5 +82,12 @@ public class AlunoServico extends ServicoUsuario<Aluno> {
     public List<Aluno> getAlunos() {
         return getEntidades(ALUNOS);
     }
-    
+      @TransactionAttribute(SUPPORTS)
+    public List<Aluno> consultarAlunoPorProfessor (@NotNull Long id) {
+        return super.consultarEntidades(new Object[]{id}, CONSULTAR_ALUNO_POR_PERSONAL);
+    }
+    @TransactionAttribute(SUPPORTS)
+    public List<Aluno> consultarAlunoSemProfessor (Long id) {
+        return super.consultarEntidades(new Object[]{id}, ALUNOSSEMPERSONAL);
+    }
 }
