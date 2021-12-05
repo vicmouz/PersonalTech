@@ -31,7 +31,9 @@
                             <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
                         </h:outputText>
                     </p:column>
-                    
+                    <!--begin GAMBIARRA -->
+                    <h:inputHidden value="#{aluno.id}"  />
+                    <!--end GAMBIARRA -->
                     <p:column headerText="Ações">
                         <p:commandButton action="#{PersonalBean.LinkarAlunoPersonal(aluno)}" icon="ui-icon-plusthick"  />
                     </p:column>

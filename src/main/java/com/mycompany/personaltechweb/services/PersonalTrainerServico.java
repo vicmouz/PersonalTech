@@ -7,7 +7,9 @@ package com.mycompany.personaltechweb.services;
 
 import com.mycompany.personaltechweb.entities.Aluno;
 import com.mycompany.personaltechweb.entities.PersonalTrainer;
+import static com.mycompany.personaltechweb.entities.PersonalTrainer.ATUALIZAR_ALUNO_GAMBIARRA;
 import static com.mycompany.personaltechweb.entities.PersonalTrainer.CONSULTAR_POR_LOGIN;
+import static com.mycompany.personaltechweb.entities.PersonalTrainer.CONSULTAR_POR_NOME;
 import static com.mycompany.personaltechweb.entities.PersonalTrainer.PERSONALS;
 import static com.mycompany.personaltechweb.entities.PersonalTrainer.QUANTIDADE_PERSONAL_TRAINER;
 import java.util.List;
@@ -31,7 +33,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 @LocalBean
 @ValidateOnExecution(type = ALL)
 public class PersonalTrainerServico extends ServicoUsuario<PersonalTrainer> {
-
+    public String login;
+    public String senha;
     @PostConstruct
     public void init() {
         super.setClasse(PersonalTrainer.class);
@@ -51,8 +54,15 @@ public class PersonalTrainerServico extends ServicoUsuario<PersonalTrainer> {
         return getEntidades(PERSONALS);
     }
      @TransactionAttribute(SUPPORTS)
-    public List<PersonalTrainer> consultarPorLogin (@NotBlank String login, @NotBlank String senha) {
+    public List<PersonalTrainer> ConsultarPorLogin (@NotBlank String login, @NotBlank String senha) {
         return super.consultarEntidades(new Object[]{login,senha}, CONSULTAR_POR_LOGIN);
     }
-   
+    @TransactionAttribute(SUPPORTS)
+    public List<PersonalTrainer> ConsultarPorNome (@NotBlank String nome) {
+        return super.consultarEntidades(new Object[]{login}, CONSULTAR_POR_NOME);
+    }
+    @TransactionAttribute(SUPPORTS)
+    public List<PersonalTrainer> AtualizarAluno (@NotBlank Long IdPersonal,Long IdAluno) {
+        return super.consultarEntidades(new Object[]{IdPersonal,IdAluno}, ATUALIZAR_ALUNO_GAMBIARRA);
+    }
 }
