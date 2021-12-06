@@ -24,6 +24,8 @@ public class AlunoBean extends Bean<Aluno> implements Serializable {
     
     @Override
     protected boolean salvar(Aluno entidade) {
+        System.out.println("com.mycompany.personaltechweb.beans.AlunoBean.salvar()");
+        System.out.println(entidade);
         alunoServico.persistir(entidade);
         return true;
     }
@@ -74,4 +76,8 @@ public class AlunoBean extends Bean<Aluno> implements Serializable {
         System.out.print(alunos);
         return alunos;
     }  
+    
+    public void buscarCep(String cep) {
+        System.out.print('1');
+    }
 }
