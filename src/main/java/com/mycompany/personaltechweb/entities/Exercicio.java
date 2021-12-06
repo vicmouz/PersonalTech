@@ -13,6 +13,8 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -33,6 +35,12 @@ import javax.validation.constraints.Size;
             )
         }
 )
+@NamedQueries(
+        {
+            @NamedQuery(
+                    name = "Exercicio.EXERCICIO",
+                    query = "SELECT a FROM Exercicio a"
+            )})
 @SqlResultSetMapping(
         name = "mapping",
         entities = {
@@ -43,7 +51,7 @@ import javax.validation.constraints.Size;
         }
 )
 public class Exercicio implements Serializable {
-
+ public static final String EXERCICIO = "Exercicio";
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;

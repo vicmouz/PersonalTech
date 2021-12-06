@@ -15,6 +15,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import static javax.persistence.FetchType.LAZY;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -31,6 +33,16 @@ import javax.validation.constraints.Size;
 @Table(name = "TB_ALUNO")
 @DiscriminatorValue(value = "A")
 @PrimaryKeyJoinColumn(name = "ID_USUARIO", referencedColumnName = "ID")
+
+@NamedNativeQueries(
+        {
+            @NamedNativeQuery(
+                    name = Aluno.ALUNOSSEMPERSONAL,
+                    query = "SELECT * FROM ROOT.TB_USUARIO INNER JOIN ROOT.TB_ALUNO ON ROOT.TB_ALUNO.ID_PT IS NULL WHERE TXT_TIPO_USUARIO = 'A'",
+                    resultSetMapping = "mapping"
+            )
+        }
+)
 @NamedQueries(
         {
             @NamedQuery(
@@ -59,6 +71,8 @@ public class Aluno extends Usuario implements Serializable {
 public static final String ALUNO_POR_CPF = "AlunoPorCPF";
 public static final String ALUNOS_POR_SEXO = "AlunoPorSexo";
 public static final String ALUNOS = "Alunos";
+public static final String CONSULTAR_ALUNO_POR_PERSONAL = "ConsultarAlunoPorPersonal";
+public static final String ALUNOSSEMPERSONAL = "AlunosSemPersonal";
 
     @Size(max = 5)
     @ElementCollection

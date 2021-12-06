@@ -14,9 +14,9 @@ public class AlunoBean extends Bean<Aluno> implements Serializable {
 
     @Inject
     private AlunoServico alunoServico;
-
+    private AlunoBean alunoBean;
     private List<Aluno> alunos;
-
+    private List<Aluno> alunosSemPersonal;
     @Override
     protected void iniciarCampos() {
         setEntidade(alunoServico.criar());       
@@ -52,9 +52,26 @@ public class AlunoBean extends Bean<Aluno> implements Serializable {
     }
 
     public List<Aluno> getAlunos() {
+        alunos = null;
         if (alunos == null) {
             alunos = alunoServico.getAlunos();
         }
         return alunos;
     }
+    public String efetuaLogin(Aluno entidade) {
+
+        boolean existe = alunoServico.existe(entidade);
+
+        if (existe) {
+            return "indexAluno?faces-redirect=true";
+        }
+
+        return null;
+    }
+    public List<Aluno> getAlunosSemPersonal(){
+        alunos = null;
+        alunos = alunoServico.consultarAlunoSemProfessor(Long.MIN_VALUE);
+        System.out.print(alunos);
+        return alunos;
+    }  
 }

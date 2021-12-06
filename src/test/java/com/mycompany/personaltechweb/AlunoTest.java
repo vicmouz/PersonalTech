@@ -44,12 +44,12 @@ public class AlunoTest extends Teste {
         alunoServico = null;
     }
 
-    @Test
+   /* @Test
     public void existeAluno() {
         Aluno aluno = alunoServico.criar();
         aluno.setCpf("382.487.724-46");
         assertTrue(alunoServico.existe(aluno));
-    }
+    }*/
 
     @Test
     public void getAlunoPorCPF() {

@@ -6,6 +6,7 @@
 package com.mycompany.personaltechweb.beans;
 
 
+import com.mycompany.personaltechweb.entities.Aluno;
 import com.mycompany.personaltechweb.entities.PersonalTrainer;
 import com.mycompany.personaltechweb.services.PersonalTrainerServico;
 import java.io.Serializable;
@@ -28,9 +29,9 @@ public class PersonalBean extends Bean<PersonalTrainer> implements Serializable 
 
  @Inject
     private PersonalTrainerServico personalServico;
-
+    private PersonalTrainer personalLogado;
     private List<PersonalTrainer> personals;
-
+    private List<Aluno> personalsAluno;
     @Override
     protected void iniciarCampos() {
         setEntidade(personalServico.criar());       
@@ -71,12 +72,33 @@ public class PersonalBean extends Bean<PersonalTrainer> implements Serializable 
         }
         return personals;
     }
-    public Boolean Login (PersonalTrainer entidade){
+    public String Login (PersonalTrainer entidade){
         if (personals == null) {
             personals = personalServico.consultarPorLogin(entidade.getLogin(), entidade.getSenha());
         }
         if(personals != null){
-            return true;
+            return "indexPersonal";
         }
-        else return false;
-}}
+        else return "index";
+}
+       public List<Aluno> getAlunosPorPersonal(){
+        personalsAluno = entidade.getAlunos();
+        return personalsAluno;
+       }
+       public String efetuaLogin(PersonalTrainer entidade) {
+        personalLogado = null;
+        boolean existe = personalServico.existe(entidade);
+
+        if (existe) {
+            personalLogado = entidade;
+            return "indexProfessor?faces-redirect=true";
+        }
+
+        return null;
+    }
+       public boolean LinkarAlunoPersonal(Aluno aluno) {     
+        personalLogado.addAluno(aluno);
+        personalServico.atualizar(personalLogado);
+        return true;
+    }
+}
