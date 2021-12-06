@@ -42,7 +42,7 @@
                     <p:message id="msgLogin" for="login"/>
 
                     <h:outputLabel for="senha" value="Senha: " />
-                    <p:inputText id="senha" value="#{AlunoBean.entidade.senha}" label="Senha" required="true" maxlength="14"/>
+                    <p:password id="senha" value="#{AlunoBean.entidade.senha}" label="Senha" required="true" maxlength="14" feedback="true" inline="true"/>
                     <p:message id="msgSenha" for="senha"/>
 
                     <h:outputLabel for="bairro" value="Bairro: " />
@@ -50,7 +50,7 @@
                     <p:message id="msgBairro" for="bairro"/>
 
                     <h:outputLabel for="cep" value="CEP: " />
-                    <p:inputText id="cep" value="#{AlunoBean.entidade.endereco.cep}" label="CEP" required="true" maxlength="14"/>
+                    <p:inputMask id="cep" value="#{AlunoBean.entidade.endereco.cep}" label="CEP" mask="99999-999" required="true" maxlength="14"/>
                     <p:message id="msgCep" for="cep"/>
 
                     <h:outputLabel for="cidade" value="Cidade: " />
@@ -62,7 +62,7 @@
                     <p:message id="msgEstado" for="estado"/>
 
                     <h:outputLabel for="rua" value="Rua: " />
-                    <p:inputText id="rua" value="#{AlunoBean.entidade.endereco.logradouro}" label="Rua" required="true" maxlength="14"/>
+                    <p:inputText id="rua" value="#{AlunoBean.entidade.endereco.logradouro}" label="Rua" required="true" maxlength="200"/>
                     <p:message id="msgRua" for="rua"/>
 
                     <h:outputLabel for="numero" value="Numero: " />
