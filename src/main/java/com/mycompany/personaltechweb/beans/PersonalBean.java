@@ -98,7 +98,7 @@ public class PersonalBean extends Bean<PersonalTrainer> implements Serializable 
        }
        public String efetuaLogin(PersonalTrainer entidade) {
          
-
+        System.out.println(entidade);
         if (personalServico.existe(entidade)== true) {
            return "indexProfessor?faces-redirect=true";
             

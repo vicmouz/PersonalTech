@@ -1,39 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-        <link href="./newcss.css" rel="stylesheet" type="text/css" />
-    </h:head>
-    <h:body>
-
-        <div  class="centerDiv">
-            <h:form id="formLogin">
-
-                <p:growl autoUpdate="true"/>
-
-
-                <p:panel>
-                    <f:facet name="header">Login</f:facet>
-                    <h:panelGrid columns="2">
-                        Login:
-                        <h:inputText id="txLogin" value="#{PersonalBean.entidade.login}" required="true" label="login"/>
-                        Senha:
-                        <h:inputSecret id="txSenha" value="#{PersonalBean.entidade.senha}" required="true" label="Senha"/>
-
-                    </h:panelGrid>
-                    <p:commandButton value="Logar" action ="#{PersonalBean.efetuaLogin(entidade)}" ajax="false"/>
-                </p:panel>
-
-            </h:form>
-        </div>
-    </h:body>
+    xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <title>login</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h3>Please Sign In</h3>
+        <h:panelGrid columns="2">
+            <h:outputLabel for="login">Login:</h:outputLabel>
+            <h:inputText id="login" value="#{loginBean.login}" required="true"
+                requiredMessage="Please enter your login"></h:inputText>
+            <h:outputLabel for="password">Password:</h:outputLabel>
+            <h:inputSecret id="password" value="#{loginBean.password}"
+                required="true" requiredMessage="Please enter password"></h:inputSecret>
+            <h:commandButton action="#{loginBean.login}" value="Login"></h:commandButton>
+        </h:panelGrid>
+    </h:form>
+    <br />
+    <br />
+    
+</h:body>
 </html>
