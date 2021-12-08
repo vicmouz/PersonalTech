@@ -33,14 +33,14 @@ import javax.websocket.Session;
 @RequestScoped
 @Named("PersonalBean")
 public class PersonalBean extends Bean<PersonalTrainer> implements Serializable {
-
+    private String usuario = "";
+    private String senha = "";
  @Inject
     private PersonalTrainerServico personalServico;
     private PersonalTrainer personalLogado;
     private List<PersonalTrainer> personals;
     private List<Aluno> personalsAluno;
-    private String usuario = "";
-    private String senha = "";
+    
     
     @Override
     protected void iniciarCampos() {
@@ -83,7 +83,7 @@ public class PersonalBean extends Bean<PersonalTrainer> implements Serializable 
         }
         return personals;
     }
-    public String Login (PersonalTrainer entidade){
+   /* public String Login (PersonalTrainer entidade){
         if (personals == null) {
             personals = personalServico.ConsultarPorLogin(entidade.getLogin(), entidade.getSenha());
         }
@@ -91,22 +91,20 @@ public class PersonalBean extends Bean<PersonalTrainer> implements Serializable 
             return "indexPersonal";
         }
         else return "index";
-}
+}*/
        public List<Aluno> getAlunosPorPersonal(){
         personalsAluno = entidade.getAlunos();
         return personalsAluno;
        }
-       public String efetuaLogin(PersonalTrainer entidade) {
-         
-        System.out.println(entidade);
-        if (personalServico.existe(entidade)== true) {
-           return "indexProfessor?faces-redirect=true";
-            
-                  
+       public String efetuaLogin(){
+        System.out.println("USUARIO  :->" +usuario);
+        System.out.println("SENHA  :->" +senha);
+        System.out.println("CONSULTA  :->" +personalServico.ConsultarPorLogin(usuario));
+        if(personalServico.ConsultarPorLogin(usuario) !=null){
+            return "indexProfessor?faces-redirect=true";
         }
-
-        return null;
-    }
+            return "index?faces-redirect=true";
+       }
        public boolean LinkarAlunoPersonal(Aluno aluno) {  
         if (personals == null) {
             personals = personalServico.getPersonals();
@@ -121,4 +119,17 @@ public class PersonalBean extends Bean<PersonalTrainer> implements Serializable 
         personalServico.atualizar(personalLogado);
         return true;
     }
+      public String getUsuario() {
+        return usuario;
+    }
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+    public String getSenha() {
+        return senha;
+    }
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+  
 }

@@ -54,8 +54,8 @@ public class PersonalTrainerServico extends ServicoUsuario<PersonalTrainer> {
         return getEntidades(PERSONALS);
     }
      @TransactionAttribute(SUPPORTS)
-    public List<PersonalTrainer> ConsultarPorLogin (@NotBlank String login, @NotBlank String senha) {
-        return super.consultarEntidades(new Object[]{login,senha}, CONSULTAR_POR_LOGIN);
+    public List<PersonalTrainer> ConsultarPorLogin (@NotBlank String login) {
+        return super.consultarEntidades(new Object[]{login}, CONSULTAR_POR_LOGIN);
     }
     @TransactionAttribute(SUPPORTS)
     public List<PersonalTrainer> ConsultarPorNome (@NotBlank String nome) {
