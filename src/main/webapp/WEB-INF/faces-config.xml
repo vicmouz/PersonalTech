@@ -22,7 +22,7 @@
             <to-view-id>/caddeAluno.xhtml</to-view-id>
         </navigation-case>  
     </navigation-rule>
-     <navigation-rule>
+    <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>cadPersonal</from-outcome>
@@ -36,7 +36,7 @@
             <to-view-id>/listadeAlunos.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-        <navigation-rule>
+    <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>listaProfessor</from-outcome>
@@ -62,6 +62,13 @@
         <navigation-case>
             <from-outcome>listaProfessor</from-outcome>
             <to-view-id>/listadeProfessor.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>addAluno</from-outcome>
+            <to-view-id>/addAlunosPorPersonal.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     
@@ -126,7 +133,7 @@
             <to-view-id>index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-     <navigation-rule>
+    <navigation-rule>
         <from-view-id>indexAluno.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>pagIndexInicial</from-outcome>

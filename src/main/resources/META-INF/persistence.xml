@@ -4,9 +4,16 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <jta-data-source>jdbc/personaltechV1</jta-data-source>
     <class>com.mycompany.personaltechweb.beans.PersonalBean</class>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <class>com.mycompany.personaltechweb.entities.Aluno</class>
+    <class>com.mycompany.personaltechweb.entities.Avaliacao</class>
+    <class>com.mycompany.personaltechweb.entities.Exercicio</class>
+    <class>com.mycompany.personaltechweb.entities.Pergunta</class>
+    <class>com.mycompany.personaltechweb.entities.PersonalTrainer</class>
+    <class>com.mycompany.personaltechweb.entities.RespostasAvaliacao</class>
+    <class>com.mycompany.personaltechweb.entities.Usuario</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
-      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
       <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform"/>
     </properties>
   </persistence-unit>
