@@ -13,6 +13,8 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import static javax.persistence.FetchType.LAZY;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -43,9 +45,25 @@ import javax.validation.constraints.Size;
             ),
     @NamedQuery(
             name  = PersonalTrainer.CONSULTAR_POR_LOGIN,
-            query = "SELECT pt FROM Usuario pt WHERE pt.login = ?1 and  pt.senha = ?1" 
-    )
+            query = "SELECT pt FROM Usuario pt WHERE pt.login LIKE ?1" 
+    ),
+    @NamedQuery(
+            name  = PersonalTrainer.CONSULTAR_POR_NOME,
+            query = "SELECT pt FROM Usuario pt WHERE pt.nome LIKE ?1" 
+    ),
     
+    /*@NamedQuery(
+            name  = PersonalTrainer.ATUALIZAR_ALUNO_GAMBIARRA,
+            query = "UPDATE PersonalTrainer a SET a. = ?1 WHERE a.id = ?1" 
+    )*/
+    
+})
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name    =   PersonalTrainer.ATUALIZAR_ALUNO_GAMBIARRA,
+                query   =   "UPDATE TB_ALUNO SET ID_PT = ? WHERE ID_USUARIO = ?"
+                ,resultSetMapping = "mapping"
+        )
 })
 
 public class PersonalTrainer extends Usuario implements Serializable {
@@ -58,6 +76,8 @@ public class PersonalTrainer extends Usuario implements Serializable {
     public static final String QUANTIDADE_PERSONAL_TRAINER = "QuantidadePersonalTrainer";
     public static final String REMOVER_POR_ID = "RemoverPorID";
     public static final String PERSONALS = "Personals";
+    public static final String CONSULTAR_POR_NOME = "ConsultarPorNome";
+    public static final String ATUALIZAR_ALUNO_GAMBIARRA = "AtualizarAluno";
     /*
     
      */

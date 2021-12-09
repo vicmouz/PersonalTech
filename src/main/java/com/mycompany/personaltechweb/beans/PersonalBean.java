@@ -11,13 +11,20 @@ import com.mycompany.personaltechweb.entities.PersonalTrainer;
 import com.mycompany.personaltechweb.services.PersonalTrainerServico;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 /**
  *
@@ -26,15 +33,19 @@ import javax.persistence.Id;
 @RequestScoped
 @Named("PersonalBean")
 public class PersonalBean extends Bean<PersonalTrainer> implements Serializable {
-
+    private String usuario = "";
+    private String senha = "";
  @Inject
     private PersonalTrainerServico personalServico;
     private PersonalTrainer personalLogado;
     private List<PersonalTrainer> personals;
     private List<Aluno> personalsAluno;
+    
+    
     @Override
     protected void iniciarCampos() {
-        setEntidade(personalServico.criar());       
+        setEntidade(personalServico.criar());   
+        
     }
     
     @Override
@@ -66,39 +77,59 @@ public class PersonalBean extends Bean<PersonalTrainer> implements Serializable 
         return "listadeProfessor?faces-redirect=true";
     }
 
-    public List<PersonalTrainer> getPersonals() {
+     public List<PersonalTrainer> getPersonals() {
         if (personals == null) {
             personals = personalServico.getPersonals();
         }
         return personals;
     }
-    public String Login (PersonalTrainer entidade){
+   /* public String Login (PersonalTrainer entidade){
         if (personals == null) {
-            personals = personalServico.consultarPorLogin(entidade.getLogin(), entidade.getSenha());
+            personals = personalServico.ConsultarPorLogin(entidade.getLogin(), entidade.getSenha());
         }
         if(personals != null){
             return "indexPersonal";
         }
         else return "index";
-}
+}*/
        public List<Aluno> getAlunosPorPersonal(){
         personalsAluno = entidade.getAlunos();
         return personalsAluno;
        }
-       public String efetuaLogin(PersonalTrainer entidade) {
-        personalLogado = null;
-        boolean existe = personalServico.existe(entidade);
-
-        if (existe) {
-            personalLogado = entidade;
+       public String efetuaLogin(){
+        System.out.println("USUARIO  :->" +usuario);
+        System.out.println("SENHA  :->" +senha);
+        System.out.println("CONSULTA  :->" +personalServico.ConsultarPorLogin(usuario));
+        if(personalServico.ConsultarPorLogin(usuario) !=null){
             return "indexProfessor?faces-redirect=true";
         }
-
-        return null;
-    }
-       public boolean LinkarAlunoPersonal(Aluno aluno) {     
+            return "index?faces-redirect=true";
+       }
+       public boolean LinkarAlunoPersonal(Aluno aluno) {  
+        if (personals == null) {
+            personals = personalServico.getPersonals();
+            System.out.println("PERSONALS::::::::::::" +personals);
+        }  
+         System.out.println("ALUNO::::::::::::" +aluno);
+        personalLogado = personals.get(0);
+        System.out.println("NOME >>>>>>>>>>>>>>>>>>>>>>>>>>>" +personalLogado.getNome());
+        System.out.println("ID >>>>>>>>>>>>>>>>>>>>>>>>>>>" +personalLogado.getId());
         personalLogado.addAluno(aluno);
+        
         personalServico.atualizar(personalLogado);
         return true;
     }
+      public String getUsuario() {
+        return usuario;
+    }
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+    public String getSenha() {
+        return senha;
+    }
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+  
 }
