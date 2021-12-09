@@ -11,7 +11,7 @@
     <h:body>
         <h:form id="Alunos">
 
-        <ui:include src="/menuSecundario.xhtml" />
+            <ui:include src="/menuSecundario.xhtml" />
             <p:separator />
             <p:panel header="Lista de alunos sem vínculo com professor">
                 <h:messages globalOnly="true" style = "color:red;margin:8px;" />
@@ -36,27 +36,14 @@
                     <h:inputHidden value="#{aluno.id}"  />
                     <!--end GAMBIARRA -->
                     <p:column headerText="Ações">
-                        <p:commandButton action="PF('widDialCadAluno').show()" icon="ui-icon-plusthick"  />
+                        <p:selectOneMenu value="#{PersonalBean.novoAluno}">
+                    <f:selectItems value="#{PersonalBean.personals}" var="user" itemValue="#{user.id}" itemLabel="#{user.nome}" />
+                </p:selectOneMenu>
+                        <p:commandButton action="#{PersonalBean.linkarAlunoPersonal}" icon="ui-icon-plusthick"  />
                     </p:column>
                 </p:dataTable>
             </p:panel>
-            <p:dialog id="dialCadAluno" visible="false" modal="true"
-                      resizable="false" 
-                      widgetVar="widDialCadAluno">
-                <f:facet name="header">
-                    Atenção!!!
-                </f:facet>
-
-
-                <h:outputText value="Você realmente deseja registrar este aluno?"/><br/>
-                <p:separator/>
-                <p:commandButton value="sim" action="#{AlunoBean.salvar}"
-                                 oncomplete="PF('widDialCadAluno').hide()"
-                                 update="@form"/>
-                <p:commandButton value="não" oncomplete="PF('widDialCadAluno').hide()"/>
-
-            </p:dialog>
-
         </h:form>
     </h:body>
 </html>
+    
