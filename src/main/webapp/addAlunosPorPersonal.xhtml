@@ -35,11 +35,10 @@
                     <!--begin GAMBIARRA -->
                     <h:inputHidden value="#{aluno.id}"  />
                     <!--end GAMBIARRA -->
+                   
                     <p:column headerText="Ações">
-                        <p:selectOneMenu value="#{PersonalBean.novoAluno}">
-                    <f:selectItems value="#{PersonalBean.personals}" var="user" itemValue="#{user.id}" itemLabel="#{user.nome}" />
-                </p:selectOneMenu>
-                        <p:commandButton action="#{PersonalBean.linkarAlunoPersonal}" icon="ui-icon-plusthick"  />
+                        
+                        <p:commandButton action="#{PersonalBean.linkarAlunoPersonal(aluno)}" value="Teste" ajax="true"/>
                     </p:column>
                 </p:dataTable>
             </p:panel>

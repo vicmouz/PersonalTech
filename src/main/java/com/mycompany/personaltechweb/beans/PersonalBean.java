@@ -34,8 +34,8 @@ import javax.websocket.Session;
 @Named("PersonalBean")
 public class PersonalBean extends Bean<PersonalTrainer> implements Serializable {
 
-    private String usuario = "";
-    private String senha = "";
+    private static String usuario = "";
+    private static String senha = "";
     @Inject
     private PersonalTrainerServico personalServico;
     private PersonalTrainer personalLogado;
@@ -117,8 +117,25 @@ public class PersonalBean extends Bean<PersonalTrainer> implements Serializable 
         return "index?faces-redirect=true";
     }
 
-    public void LinkarAlunoPersonal() {
-        System.out.println("com.mycompany.personaltechweb.beans.PersonalBean.LinkarAlunoPersonal()");
+    public void linkarAlunoPersonal(Aluno aluno) {
+        PersonalTrainer personalLinkar;
+        System.out.println("ALUNO : "+aluno);
+        System.out.println("USUARIO  :->" + usuario);
+        System.out.println("SENHA  :->" + senha);
+        System.out.println("CONSULTA  :->" + personalServico.ConsultarPorLogin(usuario));
+        personalLinkar = personalServico.ConsultarPorLogin(usuario).get(0);
+        System.out.println("Nome PERSONAL  :->" + personalLinkar.getNome());
+        System.out.println("VAI ADICIONAR AGORA");
+         System.out.println("ALUNO NOME: "+aluno.getNome());
+        System.out.println("__________________________________________________________________");
+        personalLinkar.addAluno(aluno);
+        System.out.println("ADD ALUNO NO PERSONAL  :->" + personalLinkar.getAlunos());
+        personalServico.atualizar(personalLinkar);
+        System.out.println("FIM DA ATUALIZAÇÃO");
+        System.out.println("__________________________________________________________________");
+        
+        
+         
     }
 
     public String getUsuario() {
