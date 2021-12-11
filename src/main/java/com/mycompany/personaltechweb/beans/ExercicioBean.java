@@ -6,6 +6,8 @@
 package com.mycompany.personaltechweb.beans;
 
 import com.mycompany.personaltechweb.entities.Exercicio;
+import static com.mycompany.personaltechweb.entities.Exercicio.EXERCICIO;
+import static com.mycompany.personaltechweb.entities.Exercicio.EXERCICIOSEALUNO;
 import com.mycompany.personaltechweb.services.ExercicioServico;
 import java.io.Serializable;
 import java.util.List;
@@ -21,13 +23,27 @@ import javax.inject.Named;
 @RequestScoped
 @Named("ExercicioBean")
 
-public class ExercicioBean  implements Serializable {
-    private ExercicioServico exercicioServico;
- 
+public class ExercicioBean extends ExercicioServico implements Serializable {
+    
+    ExercicioServico exercicioServico ;
     private List<Exercicio> listaExercicioMock;
     
-    
-    
+ protected void iniciarCampos() {
+        exercicioServico.init();
+ }
+ 
+ public List<Exercicio> getExercicios(){
+     
+     return super.getEntidades(EXERCICIO);
+ }
+public List<Exercicio> getExerciciosSemAluno(){
+        return super.getEntidades(EXERCICIOSEALUNO);
+    } 
+
+
+    @Override
+    public Exercicio criar() {
+return new Exercicio();    }
 
     public ExercicioServico getExercicioServico() {
         return exercicioServico;
@@ -38,9 +54,6 @@ public class ExercicioBean  implements Serializable {
     }
 
     public List<Exercicio> getListaExercicioMock() {
-        listaExercicioMock = null;
-        listaExercicioMock = exercicioServico.getExercicio();
-        System.out.print(listaExercicioMock);
         return listaExercicioMock;
     }
 
@@ -48,6 +61,11 @@ public class ExercicioBean  implements Serializable {
         this.listaExercicioMock = listaExercicioMock;
     }
 
+  
+     
+    
+
+   
  
     
     

@@ -116,8 +116,35 @@
             <to-view-id>/addAlunosPorPersonal.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
- 
+  <navigation-rule>
+        <from-view-id>/indexProfessor.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>addExercicioAluno</from-outcome>
+            <to-view-id>/addExercicioAluno.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/indexProfessor.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>meusAlunos</from-outcome>
+            <to-view-id>/meusAlunos.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/indexProfessor.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>pagIndexInicial</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
     
+    <navigation-rule>
+        <from-view-id>/addAlunosPorPersonal.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>addExercicioAluno</from-outcome>
+            <to-view-id>/addExercicioAluno.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
     
     <navigation-rule>
         <from-view-id>/addAlunosPorPersonal.xhtml</from-view-id>
@@ -129,7 +156,7 @@
     <navigation-rule>
         <from-view-id>/indexProfessor.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>pagIndexInicial</from-outcome>
+            <from-outcome>Logout</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>

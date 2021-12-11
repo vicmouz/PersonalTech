@@ -30,44 +30,27 @@ import javax.validation.executable.ValidateOnExecution;
 @Stateless(name = "ejb/ExercicioServico")
 @LocalBean
 @ValidateOnExecution(type = ALL)
-public class ExercicioServico <T extends Exercicio>{
+public abstract class ExercicioServico <T extends Exercicio>{
     
-   @PersistenceContext(name = "PersonalTechWebPU", type = TRANSACTION)
+    @PersistenceContext(name = "PersonalTechWebPU", type = TRANSACTION)
     protected EntityManager entityManager;
     protected Class<T> classe;
 
-    
     @TransactionAttribute(NOT_SUPPORTED)
     protected void setClasse(@NotNull Class<T> classe) {
         this.classe = classe;
     }
-    
-    @PostConstruct
-    public void init() {
-        setClasse((Class<T>) Exercicio.class);
-    }
-    public Exercicio criar() {
-        return new Exercicio();
-    }
-     @TransactionAttribute(SUPPORTS)
-    public boolean existe(@NotNull T exercicio) {
-        TypedQuery<Exercicio> query
-                = (TypedQuery<Exercicio>) entityManager.createNamedQuery(EXERCICIO, classe);
-        query.setParameter(1, exercicio.getExercicio());
-        return !query.getResultList().isEmpty();
-    }
-    
-  @TransactionAttribute(SUPPORTS)
-    public List<Exercicio> getExercicio() {
-        TypedQuery<Exercicio> query
-                = (TypedQuery<Exercicio>) entityManager.createNamedQuery(EXERCICIO, classe);
-        return query.getResultList();
+
+    @TransactionAttribute(SUPPORTS)
+    public abstract T criar();
+
+    @TransactionAttribute(SUPPORTS)
+    public boolean existe(@NotNull T entidade) {
+        return true;
     }
 
-    public void persistir(@Valid T entidade) {
-        if (!existe(entidade)) {
-            entityManager.persist(entidade);
-        }
+    public void persistir(@Valid T entidade) {      
+            entityManager.persist(entidade);       
     }
 
     public void atualizar(@Valid T entidade) {
@@ -86,20 +69,19 @@ public class ExercicioServico <T extends Exercicio>{
 
     }
 
-    
+    @TransactionAttribute(SUPPORTS)
     public T consultarPorId(@NotNull Long id) {
         return entityManager.find(classe, id);
     }
 
     @TransactionAttribute(SUPPORTS)
-    protected T consultarEntidade(Object[] parametros, String nomeQuery) {
+    protected T consultarEntidade(@NotNull Object[] parametros, String nomeQuery) {
         TypedQuery<T> query = entityManager.createNamedQuery(nomeQuery, classe);
 
         int i = 1;
         for (Object parametro : parametros) {
             query.setParameter(i++, parametro);
         }
-
         return query.getSingleResult();
     }
 
@@ -113,5 +95,16 @@ public class ExercicioServico <T extends Exercicio>{
         }
 
         return query.getResultList();
+    }
+
+    @TransactionAttribute(SUPPORTS)
+    protected List<T> getEntidades(String nomeQuery) {
+        TypedQuery<T> query = entityManager.createNamedQuery(nomeQuery, classe);
+        return query.getResultList();
+    }
+    
+    @PostConstruct
+    public void init() {
+       setClasse((Class<T>) Exercicio.class);
     }
 }

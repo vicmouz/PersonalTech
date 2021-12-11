@@ -5,7 +5,6 @@ import com.mycompany.personaltechweb.entities.Exercicio;
 import com.mycompany.personaltechweb.entities.NomeExercicio;
 import com.mycompany.personaltechweb.entities.TipoExercicio;
 import com.mycompany.personaltechweb.services.AlunoServico;
-import com.mycompany.personaltechweb.services.ExercicioServico;
 import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -23,9 +22,7 @@ public class AlunoBean extends Bean<Aluno> implements Serializable {
     private AlunoBean alunoBean;
     private List<Aluno> alunos;
     private List<Aluno> alunosSemPersonal;
-    private ExercicioServico exercicioServico;
- 
-    private List<Exercicio> listaExercicioMock;
+    private static List<Exercicio> listaExercicioMock;
     
     @Override
     protected void iniciarCampos() {
@@ -75,7 +72,6 @@ public class AlunoBean extends Bean<Aluno> implements Serializable {
         System.out.println("SENHA  :->" +senha);
         System.out.println("CONSULTA  :->" +alunoServico.ConsultarPorLogin(usuario));
         
-        
         if(alunoServico.ConsultarPorLogin(usuario) !=null){
             return "indexAluno?faces-redirect=true";
         }
@@ -104,18 +100,15 @@ public class AlunoBean extends Bean<Aluno> implements Serializable {
         this.senha = senha;
     }
 
-   
-    public  List<Exercicio> getListaExercicioMock() {
-        listaExercicioMock = null;
-        if (listaExercicioMock == null) {
-        listaExercicioMock = exercicioServico.getExercicio();
-        System.out.print(listaExercicioMock);}
+    public List<Exercicio> getListaExercicioMock() {
         return listaExercicioMock;
+    }
 
+    public void setListaExercicioMock(List<Exercicio> listaExercicioMock) {
+        this.listaExercicioMock = listaExercicioMock;
     }
 
     
-
    
     
  

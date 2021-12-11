@@ -26,6 +26,16 @@ import javax.validation.constraints.Size;
  *
  * @author MarcosBrasileiro
  */
+@NamedNativeQueries(
+        {
+            @NamedNativeQuery(
+                    name = PersonalTrainer.MEUSALUNOS,
+                    query = "SELECT * FROM ROOT.TB_USUARIO INNER JOIN ROOT.TB_ALUNO ON ROOT.TB_ALUNO.ID_PT = ?1 WHERE TXT_TIPO_USUARIO = 'A'",
+                    resultSetMapping = "mapping"
+            )
+            
+        }
+)
 @Entity
 @Table(name = "TB_PERSONALTRAINER")
 @DiscriminatorValue(value = "P")
@@ -58,13 +68,7 @@ import javax.validation.constraints.Size;
     )*/
     
 })
-@NamedNativeQueries({
-        @NamedNativeQuery(
-                name    =   PersonalTrainer.ATUALIZAR_ALUNO_GAMBIARRA,
-                query   =   "UPDATE TB_ALUNO SET ID_PT = ? WHERE ID_USUARIO = ?"
-                ,resultSetMapping = "mapping"
-        )
-})
+
 
 public class PersonalTrainer extends Usuario implements Serializable {
 
@@ -78,6 +82,8 @@ public class PersonalTrainer extends Usuario implements Serializable {
     public static final String PERSONALS = "Personals";
     public static final String CONSULTAR_POR_NOME = "ConsultarPorNome";
     public static final String ATUALIZAR_ALUNO_GAMBIARRA = "AtualizarAluno";
+    public static final String MEUSALUNOS = "MeusAlunos";
+
     /*
     
      */

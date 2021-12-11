@@ -13,6 +13,8 @@ import static com.mycompany.personaltechweb.entities.Aluno.ALUNO_POR_CPF;
 import static com.mycompany.personaltechweb.entities.Aluno.CONSULTAR_ALUNO_POR_PERSONAL;
 import static com.mycompany.personaltechweb.entities.Aluno.CONSULTAR_POR_LOGIN;
 import com.mycompany.personaltechweb.entities.Endereco;
+import com.mycompany.personaltechweb.entities.Exercicio;
+import static com.mycompany.personaltechweb.entities.Exercicio.EXERCICIO;
 import com.mycompany.personaltechweb.entities.TipoExercicio;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -94,4 +96,6 @@ public class AlunoServico extends ServicoUsuario<Aluno> {
     public List<Aluno> consultarAlunoSemProfessor (Long id) {
         return super.consultarEntidades(new Object[]{id}, ALUNOSSEMPERSONAL);
     }
+    
+   
 }
