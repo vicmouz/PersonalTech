@@ -1,7 +1,11 @@
 package com.mycompany.personaltechweb.beans;
 
 import com.mycompany.personaltechweb.entities.Aluno;
+import com.mycompany.personaltechweb.entities.Exercicio;
+import com.mycompany.personaltechweb.entities.NomeExercicio;
+import com.mycompany.personaltechweb.entities.TipoExercicio;
 import com.mycompany.personaltechweb.services.AlunoServico;
+import com.mycompany.personaltechweb.services.ExercicioServico;
 import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -12,13 +16,17 @@ import javax.inject.Inject;
 @RequestScoped
 @Named("AlunoBean")
 public class AlunoBean extends Bean<Aluno> implements Serializable {
-    private String usuario = "";
-    private String senha = "";
+    private static String usuario = "";
+    private static String senha = "";
     @Inject
     private AlunoServico alunoServico;
     private AlunoBean alunoBean;
     private List<Aluno> alunos;
     private List<Aluno> alunosSemPersonal;
+    private ExercicioServico exercicioServico;
+ 
+    private List<Exercicio> listaExercicioMock;
+    
     @Override
     protected void iniciarCampos() {
         setEntidade(alunoServico.criar());       
@@ -66,6 +74,8 @@ public class AlunoBean extends Bean<Aluno> implements Serializable {
         System.out.println("USUARIO  :->" +usuario);
         System.out.println("SENHA  :->" +senha);
         System.out.println("CONSULTA  :->" +alunoServico.ConsultarPorLogin(usuario));
+        
+        
         if(alunoServico.ConsultarPorLogin(usuario) !=null){
             return "indexAluno?faces-redirect=true";
         }
@@ -93,4 +103,22 @@ public class AlunoBean extends Bean<Aluno> implements Serializable {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+   
+    public  List<Exercicio> getListaExercicioMock() {
+        listaExercicioMock = null;
+        if (listaExercicioMock == null) {
+        listaExercicioMock = exercicioServico.getExercicio();
+        System.out.print(listaExercicioMock);}
+        return listaExercicioMock;
+
+    }
+
+    
+
+   
+    
+ 
+    
+    
 }

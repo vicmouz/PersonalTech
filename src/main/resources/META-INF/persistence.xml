@@ -8,6 +8,10 @@
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
       <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform"/>
+      <property name="javax.persistence.sql-load-script-source" value="META-INF/Exercicio.sql"/>
+      <property name="javax.persistence.schema-generation.create-source" value="metadata-then-script"/>
+      <property name="javax.persistence.schema-generation.create-script-source" value="META-INF/Exercicio.sql"/>
+
     </properties>
   </persistence-unit>
 </persistence>

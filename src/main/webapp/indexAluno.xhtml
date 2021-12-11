@@ -13,11 +13,23 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <h:form>
-            <ui:include src="/menuProfessor.xhtml" />
+            <ui:include src="/menuAluno.xhtml" />
             <p:separator />
-            <p:panel header="PersonalTech" footer="Personal Tech Descorp">
-                <h:outputText value="Projeto para disciplina de Desenvolvimento Corporativo" />
+            <p:panel header="Personal Tech - Lista de exercícios proposto pelo personal">
+                <h:messages globalOnly="true" style = "color:red;margin:8px;" />
+                <p:dataTable var="exercicio" value="#{ExercicioBean.listaExercicioMock}" rows="10" paginator="true"  caseSensitiveSort="true"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15" emptyMessage="Não existem exercícios cadastrados">
+                    <p:column headerText="Nome exercício" sortBy="#{exercicio.exercicio}">
+                        <h:outputText value="#{exercicio.exercicio}"/>
+                    </p:column>
+                    <p:column headerText="Tipo" sortBy="#{exercicio.tipo}">
+                        <h:outputText value="#{exercicio.tipo}"/>
+                    </p:column>
+                   
+                </p:dataTable>
             </p:panel>
+            
         </h:form>
     </h:body>
 </html>
