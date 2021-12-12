@@ -30,24 +30,25 @@ import javax.websocket.Session;
  *
  * @author T-Gamer
  */
-@RequestScoped  
+@RequestScoped
 @Named("PersonalBean")
 public class PersonalBean extends Bean<PersonalTrainer> implements Serializable {
 
     private static String usuario = "";
     private static String senha = "";
+    private String novoAluno = "";
+
     @Inject
     private PersonalTrainerServico personalServico;
     private PersonalTrainer personalLogado;
     private List<PersonalTrainer> personals;
     private List<Aluno> personalsAluno;
-    private Aluno novoAluno;
 
-    public Aluno getNovoAluno() {
+    public String getNovoAluno() {
         return novoAluno;
     }
 
-    public void setNovoAluno(Aluno novoAluno) {
+    public void setNovoAluno(String novoAluno) {
         this.novoAluno = novoAluno;
     }
 
@@ -117,25 +118,24 @@ public class PersonalBean extends Bean<PersonalTrainer> implements Serializable 
         return "index?faces-redirect=true";
     }
 
-    public void linkarAlunoPersonal(Aluno aluno) {
-        PersonalTrainer personalLinkar;
-        System.out.println("ALUNO : "+aluno);
-        System.out.println("USUARIO  :->" + usuario);
-        System.out.println("SENHA  :->" + senha);
-        System.out.println("CONSULTA  :->" + personalServico.ConsultarPorLogin(usuario));
-        personalLinkar = personalServico.ConsultarPorLogin(usuario).get(0);
-        System.out.println("Nome PERSONAL  :->" + personalLinkar.getNome());
-        System.out.println("VAI ADICIONAR AGORA");
-         System.out.println("ALUNO NOME: "+aluno.getNome());
-        System.out.println("__________________________________________________________________");
-        personalLinkar.addAluno(aluno);
-        System.out.println("ADD ALUNO NO PERSONAL  :->" + personalLinkar.getAlunos());
-        personalServico.atualizar(personalLinkar);
-        System.out.println("FIM DA ATUALIZAÇÃO");
-        System.out.println("__________________________________________________________________");
-        
-        
-         
+    public void linkarAlunoPersonal() {
+        System.out.println("USUARIO  :->" + novoAluno);
+//        PersonalTrainer personalLinkar;
+//        System.out.println("ALUNO : "+aluno);
+//        System.out.println("USUARIO  :->" + usuario);
+//        System.out.println("SENHA  :->" + senha);
+//        System.out.println("CONSULTA  :->" + personalServico.ConsultarPorLogin(usuario));
+//        personalLinkar = personalServico.ConsultarPorLogin(usuario).get(0);
+//        System.out.println("Nome PERSONAL  :->" + personalLinkar.getNome());
+//        System.out.println("VAI ADICIONAR AGORA");
+//         System.out.println("ALUNO NOME: "+aluno.getNome());
+//        System.out.println("__________________________________________________________________");
+//        personalLinkar.addAluno(aluno);
+//        System.out.println("ADD ALUNO NO PERSONAL  :->" + personalLinkar.getAlunos());
+//        personalServico.atualizar(personalLinkar);
+//        System.out.println("FIM DA ATUALIZAÇÃO");
+//        System.out.println("__________________________________________________________________");
+
     }
 
     public String getUsuario() {
