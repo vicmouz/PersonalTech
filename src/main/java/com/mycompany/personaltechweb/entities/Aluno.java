@@ -41,6 +41,7 @@ import javax.validation.constraints.Size;
                     query = "SELECT * FROM ROOT.TB_USUARIO INNER JOIN ROOT.TB_ALUNO ON ROOT.TB_ALUNO.ID_PT IS NULL WHERE TXT_TIPO_USUARIO = 'A'",
                     resultSetMapping = "mapping"
             )
+            
         }
 )
 @NamedQueries(
@@ -78,6 +79,7 @@ public static final String ALUNOS = "Alunos";
 public static final String CONSULTAR_ALUNO_POR_PERSONAL = "ConsultarAlunoPorPersonal";
 public static final String ALUNOSSEMPERSONAL = "AlunosSemPersonal";
 public static final String CONSULTAR_POR_LOGIN = "ConsultarPorLogin";
+
 
     @Size(max = 5)
     @ElementCollection

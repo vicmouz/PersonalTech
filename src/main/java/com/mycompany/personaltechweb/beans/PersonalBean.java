@@ -5,7 +5,6 @@
  */
 package com.mycompany.personaltechweb.beans;
 
-
 import com.mycompany.personaltechweb.entities.Aluno;
 import com.mycompany.personaltechweb.entities.PersonalTrainer;
 import com.mycompany.personaltechweb.services.PersonalTrainerServico;
@@ -14,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -30,24 +30,33 @@ import javax.websocket.Session;
  *
  * @author T-Gamer
  */
-@RequestScoped
+@RequestScoped  
 @Named("PersonalBean")
 public class PersonalBean extends Bean<PersonalTrainer> implements Serializable {
-    private String usuario = "";
-    private String senha = "";
- @Inject
+
+    private static String usuario = "";
+    private static String senha = "";
+    @Inject
     private PersonalTrainerServico personalServico;
     private PersonalTrainer personalLogado;
     private List<PersonalTrainer> personals;
     private List<Aluno> personalsAluno;
-    
-    
+    private Aluno novoAluno;
+
+    public Aluno getNovoAluno() {
+        return novoAluno;
+    }
+
+    public void setNovoAluno(Aluno novoAluno) {
+        this.novoAluno = novoAluno;
+    }
+
     @Override
     protected void iniciarCampos() {
-        setEntidade(personalServico.criar());   
-        
+        setEntidade(personalServico.criar());
+
     }
-    
+
     @Override
     protected boolean salvar(PersonalTrainer entidade) {
         personalServico.persistir(entidade);
@@ -55,35 +64,36 @@ public class PersonalBean extends Bean<PersonalTrainer> implements Serializable 
     }
 
     @Override
-    public boolean atualizar(PersonalTrainer entidade) {       
+    public boolean atualizar(PersonalTrainer entidade) {
         personalServico.atualizar(entidade);
         return true;
     }
-    
-    public String editar(PersonalTrainer personal) {        
-        entidade = personalServico.consultarPorId(personal.getId());        
-        return "alterarProfessor";       
+
+    public String editar(PersonalTrainer personal) {
+        entidade = personalServico.consultarPorId(personal.getId());
+        return "alterarProfessor";
     }
-    
+
     @Override
-    public boolean deletar(PersonalTrainer entidade) {      
+    public boolean deletar(PersonalTrainer entidade) {
         personalServico.deletar(entidade);
         return true;
     }
-    
+
     // Metodo gambiarra p tela atualizar
-    public String remover(PersonalTrainer entidade) {                
+    public String remover(PersonalTrainer entidade) {
         personalServico.deletar(entidade);
         return "listadeProfessor?faces-redirect=true";
     }
 
-     public List<PersonalTrainer> getPersonals() {
+    public List<PersonalTrainer> getPersonals() {
         if (personals == null) {
             personals = personalServico.getPersonals();
         }
         return personals;
     }
-   /* public String Login (PersonalTrainer entidade){
+
+    /* public String Login (PersonalTrainer entidade){
         if (personals == null) {
             personals = personalServico.ConsultarPorLogin(entidade.getLogin(), entidade.getSenha());
         }
@@ -92,44 +102,56 @@ public class PersonalBean extends Bean<PersonalTrainer> implements Serializable 
         }
         else return "index";
 }*/
-       public List<Aluno> getAlunosPorPersonal(){
+    public List<Aluno> getAlunosPorPersonal() {
         personalsAluno = entidade.getAlunos();
         return personalsAluno;
-       }
-       public String efetuaLogin(){
-        System.out.println("USUARIO  :->" +usuario);
-        System.out.println("SENHA  :->" +senha);
-        System.out.println("CONSULTA  :->" +personalServico.ConsultarPorLogin(usuario));
-        if(personalServico.ConsultarPorLogin(usuario) !=null){
+    }
+
+    public String efetuaLogin() {
+        System.out.println("USUARIO  :->" + usuario);
+        System.out.println("SENHA  :->" + senha);
+        System.out.println("CONSULTA  :->" + personalServico.ConsultarPorLogin(usuario));
+        if (personalServico.ConsultarPorLogin(usuario) != null) {
             return "indexProfessor?faces-redirect=true";
         }
-            return "index?faces-redirect=true";
-       }
-       public boolean LinkarAlunoPersonal(Aluno aluno) {  
-        if (personals == null) {
-            personals = personalServico.getPersonals();
-            System.out.println("PERSONALS::::::::::::" +personals);
-        }  
-         System.out.println("ALUNO::::::::::::" +aluno);
-        personalLogado = personals.get(0);
-        System.out.println("NOME >>>>>>>>>>>>>>>>>>>>>>>>>>>" +personalLogado.getNome());
-        System.out.println("ID >>>>>>>>>>>>>>>>>>>>>>>>>>>" +personalLogado.getId());
-        personalLogado.addAluno(aluno);
-        
-        personalServico.atualizar(personalLogado);
-        return true;
+        return "index?faces-redirect=true";
     }
-      public String getUsuario() {
+
+    public void linkarAlunoPersonal(Aluno aluno) {
+        PersonalTrainer personalLinkar;
+        System.out.println("ALUNO : "+aluno);
+        System.out.println("USUARIO  :->" + usuario);
+        System.out.println("SENHA  :->" + senha);
+        System.out.println("CONSULTA  :->" + personalServico.ConsultarPorLogin(usuario));
+        personalLinkar = personalServico.ConsultarPorLogin(usuario).get(0);
+        System.out.println("Nome PERSONAL  :->" + personalLinkar.getNome());
+        System.out.println("VAI ADICIONAR AGORA");
+         System.out.println("ALUNO NOME: "+aluno.getNome());
+        System.out.println("__________________________________________________________________");
+        personalLinkar.addAluno(aluno);
+        System.out.println("ADD ALUNO NO PERSONAL  :->" + personalLinkar.getAlunos());
+        personalServico.atualizar(personalLinkar);
+        System.out.println("FIM DA ATUALIZAÇÃO");
+        System.out.println("__________________________________________________________________");
+        
+        
+         
+    }
+
+    public String getUsuario() {
         return usuario;
     }
+
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
+
     public String getSenha() {
         return senha;
     }
+
     public void setSenha(String senha) {
         this.senha = senha;
     }
-  
+
 }
