@@ -13,9 +13,9 @@
 
             <ui:include src="/menuSecundarioProfessor.xhtml" />
             <p:separator />
-            <p:panel header="Lista de alunos sem vínculo com professor">
+            <p:panel header="Lista de exercicios">
                 <h:messages globalOnly="true" style = "color:red;margin:8px;" />
-                <p:dataTable var="exercicio" value="#{ExercicioBean.exerciciosSemAluno}" rows="10" paginator="true"  caseSensitiveSort="true"
+                <p:dataTable var="exercicio" value="#{ExercicioBean.exercicios}" rows="10" paginator="true"  caseSensitiveSort="true"
                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                              rowsPerPageTemplate="5,10,15" emptyMessage="Não existem exercícios cadastrados">
                     <p:column headerText="Nome exercício" sortBy="#{exercicio.exercicio}">
@@ -30,10 +30,23 @@
                    
                     <p:column headerText="Ações">
                         
-                        <p:commandButton action="#{PersonalBean.linkarAlunoPersonal(aluno)}" value="Adicionar" ajax="true"/>
+                        <p:commandButton oncomplete="PF('widAddExercicio').show()" value="Adicionar" />
                     </p:column>
                 </p:dataTable>
             </p:panel>
+             <p:dialog id="AddExercicio" visible="false" modal="true"
+                      resizable="false" 
+                      widgetVar="widAddExercicio">
+                <f:facet name="header">
+                    Atenção!!!
+                </f:facet>
+
+
+                <h:outputText value="Exercicio adicionado com sucesso"/><br/>
+                
+               
+
+            </p:dialog>
         </h:form>
     </h:body>
 </html>

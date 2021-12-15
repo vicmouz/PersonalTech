@@ -24,6 +24,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+
 /**
  *
  * @author MarcosBrasileiro
@@ -39,12 +40,8 @@ import javax.validation.constraints.Size;
                     name = Aluno.ALUNOSSEMPERSONAL,
                     query = "SELECT * FROM ROOT.TB_USUARIO INNER JOIN ROOT.TB_ALUNO ON ROOT.TB_ALUNO.ID_PT IS NULL WHERE TXT_TIPO_USUARIO = 'A'",
                     resultSetMapping = "mapping"
-            ),
-            @NamedNativeQuery(
-                    name = Aluno.ALUNOS_NOVO_PERSONAL,
-                    query = "UPDATE TB_ALUNO SET ID_PT=2 WHERE ID_PT IS NULL"
             )
-
+            
         }
 )
 @NamedQueries(
@@ -53,7 +50,7 @@ import javax.validation.constraints.Size;
                     name = "Aluno.PorNome",
                     query = "SELECT a FROM Aluno a WHERE a.nome LIKE ?1 ORDER BY a.id"
             ),
-            @NamedQuery(
+                @NamedQuery(
                     name = "Aluno.PorTipoDeExercicio",
                     query = "SELECT DISTINCT a FROM Aluno a JOIN a.exercicios xs WHERE xs.tipo = ?1"
             ),
@@ -67,8 +64,8 @@ import javax.validation.constraints.Size;
             ),
             @NamedQuery(
             name  = Aluno.CONSULTAR_POR_LOGIN,
-                    query = "SELECT pt FROM Usuario pt WHERE pt.login LIKE ?1"
-            ),
+            query = "SELECT pt FROM Usuario pt WHERE pt.login LIKE ?1" 
+    ),
             @NamedQuery(
                     name = Aluno.ALUNOS,
                     query = "SELECT a FROM Aluno a ORDER BY a.nome"
@@ -76,14 +73,13 @@ import javax.validation.constraints.Size;
         }
 )
 public class Aluno extends Usuario implements Serializable {
+public static final String ALUNO_POR_CPF = "AlunoPorCPF";
+public static final String ALUNOS_POR_SEXO = "AlunoPorSexo";
+public static final String ALUNOS = "Alunos";
+public static final String CONSULTAR_ALUNO_POR_PERSONAL = "ConsultarAlunoPorPersonal";
+public static final String ALUNOSSEMPERSONAL = "AlunosSemPersonal";
+public static final String CONSULTAR_POR_LOGIN = "ConsultarPorLogin";
 
-    public static final String ALUNO_POR_CPF = "AlunoPorCPF";
-    public static final String ALUNOS_POR_SEXO = "AlunoPorSexo";
-    public static final String ALUNOS = "Alunos";
-    public static final String CONSULTAR_ALUNO_POR_PERSONAL = "ConsultarAlunoPorPersonal";
-    public static final String ALUNOSSEMPERSONAL = "AlunosSemPersonal";
-    public static final String CONSULTAR_POR_LOGIN = "ConsultarPorLogin";
-    public static final String ALUNOS_NOVO_PERSONAL = "AlunosNovoPersonal";
 
     @Size(max = 5)
     @ElementCollection
@@ -91,13 +87,13 @@ public class Aluno extends Usuario implements Serializable {
             joinColumns = @JoinColumn(name = "ID_ALUNO", nullable = false))
     @Column(name = "TXT_NUM_TELEFONE", nullable = false, length = 20)
     private Collection<String> telefones;
-
+    
     @Size(max = 10)
     @OneToMany(fetch = LAZY,
             cascade = ALL, orphanRemoval = true)
     @JoinColumn(name = "ID_ALUNO", referencedColumnName = "ID_USUARIO")
     private List<Exercicio> exercicios;
-
+    
     @OneToMany(mappedBy = "aluno", fetch = LAZY,
             cascade = ALL)
     private List<Avaliacao> avaliacoes;
