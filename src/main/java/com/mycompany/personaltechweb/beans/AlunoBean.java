@@ -24,6 +24,7 @@ public class AlunoBean extends Bean<Aluno> implements Serializable {
     private List<Aluno> alunosSemPersonal;
     private static List<Exercicio> listaExercicioMock;
     
+    
     @Override
     protected void iniciarCampos() {
         setEntidade(alunoServico.criar());       
@@ -107,7 +108,9 @@ public class AlunoBean extends Bean<Aluno> implements Serializable {
     public void setListaExercicioMock(List<Exercicio> listaExercicioMock) {
         this.listaExercicioMock = listaExercicioMock;
     }
-
+public String redirect(){
+    return "addExercicioAluno?faces-redirect=true";
+}
     
    
     

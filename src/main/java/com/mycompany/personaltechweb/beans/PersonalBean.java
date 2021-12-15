@@ -7,6 +7,7 @@ package com.mycompany.personaltechweb.beans;
 
 import com.mycompany.personaltechweb.entities.Aluno;
 import com.mycompany.personaltechweb.entities.PersonalTrainer;
+import com.mycompany.personaltechweb.services.AlunoServico;
 import com.mycompany.personaltechweb.services.PersonalTrainerServico;
 import com.mycompany.personaltechweb.services.AlunoServico;
 import java.io.Serializable;
@@ -14,7 +15,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -22,7 +27,7 @@ import javax.inject.Named;
  *
  * @author T-Gamer
  */
-@RequestScoped
+@RequestScoped  
 @Named("PersonalBean")
 public class PersonalBean extends Bean<PersonalTrainer> implements Serializable {
 
