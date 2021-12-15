@@ -5,14 +5,15 @@
       xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" 
       xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
-        <title>Lista de Alunos</title>
+        <title>Meus alunos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
         <h:form id="Alunos">
-            <ui:include src="/menuSecundario.xhtml" />
+
+            <ui:include src="/menuSecundarioProfessor.xhtml" />
             <p:separator />
-            <p:panel header="Personal Tech - Lista de alunos">
+            <p:panel header="Meus Alunos">
                 <h:messages globalOnly="true" style = "color:red;margin:8px;" />
                 <p:dataTable var="aluno" value="#{AlunoBean.alunos}" rows="10" paginator="true"  caseSensitiveSort="true"
                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -31,13 +32,17 @@
                             <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
                         </h:outputText>
                     </p:column>
+                    <!--begin GAMBIARRA -->
+                    <h:inputHidden value="#{aluno.id}"  />
+                    <!--end GAMBIARRA -->
+                   
                     <p:column headerText="Ações">
-                        <p:commandButton action="#{AlunoBean.editar(aluno)}" icon="ui-icon-pencil" value="Adicionar aluno" />
-                     
+                        
+                        <p:commandButton action="#{PersonalBean.linkarAlunoPersonal(aluno)}" value="Teste" ajax="true"/>
                     </p:column>
                 </p:dataTable>
             </p:panel>
-            
         </h:form>
     </h:body>
 </html>
+    
