@@ -10,12 +10,28 @@ and open the template in the editor.
     <p:menubar>
         <p:submenu label="Aluno">
             <p:menuitem
-                value ="Cadastrar Aluno por exercicio"
+                value ="Linkar Aluno por personal"
                 outcome="addAlunoPersonal"
                 icon  ="ui-icon-note"
                 />
+            
+            <p:menuitem
+                value ="Cadastrar Exercicio por aluno"
+                outcome="addExercicioAluno"
+                icon  ="ui-icon-plus"
+                />
+            <p:menuitem
+                value ="Meus Alunos"
+                outcome="meusAlunos"
+                icon  ="ui-icon-note"
+                />
             </p:submenu>
-        
+           <p:menuitem
+            value ="Logout"
+            outcome="pagIndexInicial"
+            icon  ="ui-icon-close"
+            />
+           
 
     </p:menubar>
 </html>

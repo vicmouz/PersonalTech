@@ -1,22 +1,30 @@
 package com.mycompany.personaltechweb.beans;
 
 import com.mycompany.personaltechweb.entities.Aluno;
+import com.mycompany.personaltechweb.entities.Exercicio;
+import com.mycompany.personaltechweb.entities.NomeExercicio;
+import com.mycompany.personaltechweb.entities.TipoExercicio;
 import com.mycompany.personaltechweb.services.AlunoServico;
 import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.inject.Inject;
 
 @RequestScoped
 @Named("AlunoBean")
 public class AlunoBean extends Bean<Aluno> implements Serializable {
-
+    private static String usuario = "";
+    private static String senha = "";
     @Inject
     private AlunoServico alunoServico;
     private AlunoBean alunoBean;
     private List<Aluno> alunos;
     private List<Aluno> alunosSemPersonal;
+    private static List<Exercicio> listaExercicioMock;
+    
+    
     @Override
     protected void iniciarCampos() {
         setEntidade(alunoServico.criar());       
@@ -60,15 +68,15 @@ public class AlunoBean extends Bean<Aluno> implements Serializable {
         }
         return alunos;
     }
-    public String efetuaLogin(Aluno entidade) {
-
-        boolean existe = alunoServico.existe(entidade);
-
-        if (existe) {
+    public String efetuaLogin() {
+        System.out.println("USUARIO  :->" +usuario);
+        System.out.println("SENHA  :->" +senha);
+        System.out.println("CONSULTA  :->" +alunoServico.ConsultarPorLogin(usuario));
+        
+        if(alunoServico.ConsultarPorLogin(usuario) !=null){
             return "indexAluno?faces-redirect=true";
         }
-
-        return null;
+            return "index?faces-redirect=true";
     }
     public List<Aluno> getAlunosSemPersonal(){
         alunos = null;
@@ -80,4 +88,33 @@ public class AlunoBean extends Bean<Aluno> implements Serializable {
     public void buscarCep(String cep) {
         System.out.print('1');
     }
+        public String getUsuario() {
+        return usuario;
+    }
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+    public String getSenha() {
+        return senha;
+    }
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public List<Exercicio> getListaExercicioMock() {
+        return listaExercicioMock;
+    }
+
+    public void setListaExercicioMock(List<Exercicio> listaExercicioMock) {
+        this.listaExercicioMock = listaExercicioMock;
+    }
+public String redirect(){
+    return "addExercicioAluno?faces-redirect=true";
+}
+    
+   
+    
+ 
+    
+    
 }

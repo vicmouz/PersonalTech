@@ -32,14 +32,19 @@ import javax.validation.constraints.Size;
                     name = "Exercicio.RetornaTipoExercicio",
                     query = "SELECT ex.ID, ex.TXT_NOME_EXERCICIO, ex.TXT_TIPO_EXERCICIO, a.TXT_NOME mapa FROM TB_EXERCICIO ex JOIN TB_USUARIO a ON ex.ID_ALUNO = a.ID WHERE ex.ID = ?1",
                     resultSetMapping = "mapping"
+            ),
+            @NamedNativeQuery(
+                    name = Exercicio.EXERCICIOSEALUNO,
+                    query = "SELECT * FROM ROOT.TB_EXERCICIO INNER JOIN ROOT.TB_ALUNO ON ROOT.TB_EXERCICIO.ID_ALUNO IS NULL",
+                    resultSetMapping = "mapping"
             )
         }
 )
 @NamedQueries(
         {
             @NamedQuery(
-                    name = "Exercicio.EXERCICIO",
-                    query = "SELECT a FROM Exercicio a"
+                    name = Exercicio.EXERCICIO,
+                    query = "SELECT a FROM Exercicio a ORDER BY a.exercicio"
             )})
 @SqlResultSetMapping(
         name = "mapping",
@@ -52,6 +57,8 @@ import javax.validation.constraints.Size;
 )
 public class Exercicio implements Serializable {
  public static final String EXERCICIO = "Exercicio";
+ public static final String EXERCICIOSEALUNO = "ExerciciosEAluno";
+
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
