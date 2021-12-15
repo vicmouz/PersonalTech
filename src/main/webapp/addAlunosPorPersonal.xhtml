@@ -8,14 +8,25 @@
         <title>Lista de alunos sem vínculo com professor</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
-    <h:body>
-        <h:form id="Alunos">
+    <script>
+        const confirmPersonal = () => {
+            var selectedValue = PF('test').getSelectedValue();
+            var element = document.getElementById('alunos:selectedPersonal');
+            console.log(selectedValue);
+element.value = selectedValue;
+        
 
+
+        };
+    </script>
+    <h:body>
+        <h:form id="alunos">
+            <h:inputHidden value="#{PersonalBean.novoAluno}" id="selectedPersonal" class="test" />
             <ui:include src="/menuSecundarioProfessor.xhtml" />
             <p:separator />
             <p:panel header="Lista de alunos sem vínculo com professor">
                 <h:messages globalOnly="true" style = "color:red;margin:8px;" />
-                <p:dataTable var="aluno" value="#{AlunoBean.alunos}" rows="10" paginator="true"  caseSensitiveSort="true"
+                <p:dataTable var="aluno" value="#{AlunoBean.alunosSemPersonal}" rows="10" paginator="true"  caseSensitiveSort="true"
                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                              rowsPerPageTemplate="5,10,15" emptyMessage="Não existem alunos cadastrados">
                     <p:column headerText="Nome" sortBy="#{aluno.nome}">
@@ -30,19 +41,41 @@
                     <p:column headerText="Data de Nascimento ">
                         <h:outputText value="#{aluno.dataNascimento}">
                             <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
-                        </h:outputText>
+                        </h:outputText> 
                     </p:column>
                     <!--begin GAMBIARRA -->
                     <h:inputHidden value="#{aluno.id}"  />
                     <!--end GAMBIARRA -->
-                   
+                    
                     <p:column headerText="Ações">
                         
-                        <p:commandButton action="#{PersonalBean.linkarAlunoPersonal(aluno)}" value="Teste" ajax="true"/>
+                        <p:commandButton oncomplete="PF('widDialAddPersonal').show()" value="Escolher" />
+                        <p:commandButton action="#{PersonalBean.linkarAlunoPersonal()}" value="Confirmar"  ajax="false"/>
                     </p:column>
                 </p:dataTable>
             </p:panel>
+
+
+
         </h:form>
+
+        <p:dialog id="dialAddPersonal" visible="false" modal="true"
+                  resizable="false" 
+                  widgetVar="widDialAddPersonal">
+            <f:facet name="header">
+                Atenção!!!
+            </f:facet>
+
+
+            <h:outputText value="Escolha o personal:"/><br/>
+            <p:separator/>
+
+            <p:selectOneMenu id="option" value="#{PersonalBean.novoAluno}" filter="true" filterMatchMode="startsWith" panelStyle="width:180px" effect="fade" widgetVar="test" >
+                <f:selectItems value="#{PersonalBean.personals}"  var="user" id="personal"
+                               itemLabel="#{user.nome}" itemValue="#{user.id}"/>
+            </p:selectOneMenu>
+            <p:separator/>
+            <p:commandButton oncomplete="confirmPersonal();PF('widDialAddPersonal').hide();#{PersonalBean.linkarAlunoPersonal()}" value="Confirmar Escolha" />
+        </p:dialog>
     </h:body>
 </html>
-    

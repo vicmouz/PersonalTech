@@ -45,20 +45,20 @@
                     <h:outputLabel for="senha" value="Senha: " />
                     <p:password id="senha" value="#{PersonalBean.entidade.senha}" label="Senha" required="true" feedback="true" inline="true" maxlength="14"/>
                     <p:message id="msgSenha" for="senha"/>
-                    
-<h:outputLabel for="cep" value="CEP: " />
+
+                    <h:outputLabel for="cep" value="CEP: " />
                     <p:inputMask id="cep" value="#{PersonalBean.entidade.endereco.cep}" label="CEP" mask="99999-999"  required="true" maxlength="14" onchange="buscarCep(String(this.value).replace('-', ''));"/>
                     <p:message id="msgCep" for="cep"/>
-                    
+
                     <h:outputLabel for="rua" value="Rua: " />
                     <p:inputText id="rua" value="#{PersonalBean.entidade.endereco.logradouro}" label="Rua" required="true" maxlength="200"/>
                     <p:message id="msgRua" for="rua"/>
-                    
+
                     <h:outputLabel for="bairro" value="Bairro: " />
                     <p:inputText id="bairro" value="#{PersonalBean.entidade.endereco.bairro}" label="Bairro" required="true" maxlength="14"/>
                     <p:message id="msgBairro" for="bairro"/>
 
-                    
+
 
                     <h:outputLabel for="cidade" value="Cidade: " />
                     <p:inputText id="cidade" value="#{PersonalBean.entidade.endereco.cidade}" label="Cidade" required="true" maxlength="14"/>
@@ -68,7 +68,7 @@
                     <p:inputText id="estado" value="#{PersonalBean.entidade.endereco.estado}" label="Estado" required="true" maxlength="14"/>
                     <p:message id="msgEstado" for="estado"/>
 
-                    
+
 
                     <h:outputLabel for="numero" value="Numero: " />
                     <p:inputText type="number" id="numero" value="#{PersonalBean.entidade.endereco.numero}" label="Numero" required="false" maxlength="14"/>
@@ -78,8 +78,8 @@
                 <br />
                 <p:commandButton value="Salvar" oncomplete="PF('widDialCadProfessor').show()"/>
             </p:panel>
-            
-              <p:dialog id="dialCadProfessor" visible="false" modal="true"
+
+            <p:dialog id="dialCadProfessor" visible="false" modal="true"
                       resizable="false" 
                       widgetVar="widDialCadProfessor">
                 <f:facet name="header">
