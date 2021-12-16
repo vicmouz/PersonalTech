@@ -37,7 +37,7 @@ import javax.validation.constraints.Size;
         {
             @NamedNativeQuery(
                     name = Aluno.ALUNOSSEMPERSONAL,
-                    query = "SELECT * FROM ROOT.TB_USUARIO INNER JOIN ROOT.TB_ALUNO ON ROOT.TB_ALUNO.ID_PT IS NULL WHERE TXT_TIPO_USUARIO = 'A'",
+                    query = "SELECT * FROM TB_USUARIO INNER JOIN TB_ALUNO ON TB_ALUNO.ID_PT IS NULL WHERE TXT_TIPO_USUARIO = 'A'",
                     resultSetMapping = "mapping"
             ),
             @NamedNativeQuery(

@@ -22,6 +22,10 @@ public class AlunoBean extends Bean<Aluno> implements Serializable {
     private AlunoBean alunoBean;
     private List<Aluno> alunos;
     private List<Aluno> alunosSemPersonal;
+
+    public void setAlunosSemPersonal(List<Aluno> alunosSemPersonal) {
+        this.alunosSemPersonal = alunosSemPersonal;
+    }
     private static List<Exercicio> listaExercicioMock;
     
     
@@ -79,10 +83,10 @@ public class AlunoBean extends Bean<Aluno> implements Serializable {
             return "index?faces-redirect=true";
     }
     public List<Aluno> getAlunosSemPersonal(){
-        alunos = null;
-        alunos = alunoServico.consultarAlunoSemProfessor(Long.MIN_VALUE);
-        System.out.print(alunos);
-        return alunos;
+        alunosSemPersonal = null;
+        alunosSemPersonal = alunoServico.consultarAlunoSemProfessor();
+        System.out.print(alunosSemPersonal);
+        return alunosSemPersonal;
     }  
     
     public void buscarCep(String cep) {

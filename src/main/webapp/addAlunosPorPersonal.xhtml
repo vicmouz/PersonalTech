@@ -50,7 +50,7 @@ element.value = selectedValue;
                     <p:column headerText="Ações">
                         
                         <p:commandButton oncomplete="PF('widDialAddPersonal').show()" value="Escolher" />
-                        <p:commandButton action="#{PersonalBean.linkarAlunoPersonal()}" value="Confirmar"  ajax="false"/>
+                        <p:commandButton action="#{PersonalBean.redirectHome()}" value="Confirmar"  ajax="false"/>
                     </p:column>
                 </p:dataTable>
             </p:panel>

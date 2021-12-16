@@ -94,8 +94,8 @@ public class AlunoServico extends ServicoUsuario<Aluno> {
         return super.consultarEntidades(new Object[]{id}, CONSULTAR_ALUNO_POR_PERSONAL);
     }
     @TransactionAttribute(SUPPORTS)
-    public List<Aluno> consultarAlunoSemProfessor (Long id) {
-        return super.consultarEntidades(new Object[]{id}, ALUNOSSEMPERSONAL);
+    public List<Aluno> consultarAlunoSemProfessor () {
+        return getEntidades(ALUNOSSEMPERSONAL);
     }
 
    

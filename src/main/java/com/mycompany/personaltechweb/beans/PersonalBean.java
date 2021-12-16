@@ -161,5 +161,9 @@ public class PersonalBean extends Bean<PersonalTrainer> implements Serializable 
     public void setSenha(String senha) {
         this.senha = senha;
     }
+    
+    public String redirectHome(){
+    return "indexProfessor?faces-redirect=true";
+}
 
 }

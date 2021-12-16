@@ -27,7 +27,11 @@
                     <p:message id="msgCpf" for="cpf"/>
 
                     <h:outputLabel for="sexo" value="Sexo: " />
-                    <p:inputText id="sexo" value="#{PersonalBean.entidade.sexo}" label="Sexo" required="true" maxlength="14"/>
+                    <p:selectOneMenu id="sexo" value="#{PersonalBean.entidade.sexo}" filter="true" filterMatchMode="startsWith" panelStyle="width:180px" effect="fade" widgetVar="test" >
+                        <f:selectItem itemLabel="Feminino" itemValue="F" />
+                        <f:selectItem  itemLabel="Masculino" itemValue="M" />
+
+                    </p:selectOneMenu>
                     <p:message id="msgSexo" for="sexo"/>
 
                     <h:outputLabel for="email" value="Email: " />
