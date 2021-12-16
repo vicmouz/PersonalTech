@@ -26,7 +26,7 @@ element.value = selectedValue;
             <p:separator />
             <p:panel header="Lista de alunos sem vínculo com professor">
                 <h:messages globalOnly="true" style = "color:red;margin:8px;" />
-                <p:dataTable var="aluno" value="#{AlunoBean.alunosSemPersonal}" rows="10" paginator="true"  caseSensitiveSort="true"
+                <p:dataTable var="aluno" value="#{AlunoBean.alunos}" rows="10" paginator="true"  caseSensitiveSort="true"
                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                              rowsPerPageTemplate="5,10,15" emptyMessage="Não existem alunos cadastrados">
                     <p:column headerText="Nome" sortBy="#{aluno.nome}">
