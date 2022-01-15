@@ -32,6 +32,10 @@
                             <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
                         </h:outputText>
                     </p:column>
+                    <p:column headerText="Ações">
+                        
+                    <p:commandButton action="#{PersonalBean.redirectAvaliacao()}" value="Avaliar"  ajax="false"/>
+                    </p:column>
                     <!--begin GAMBIARRA -->
                     <h:inputHidden value="#{aluno.id}"  />
                     <!--end GAMBIARRA -->

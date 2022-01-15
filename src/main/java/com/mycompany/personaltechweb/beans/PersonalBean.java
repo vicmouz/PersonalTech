@@ -14,6 +14,7 @@ import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -165,5 +166,41 @@ public class PersonalBean extends Bean<PersonalTrainer> implements Serializable 
     public String redirectHome(){
     return "indexProfessor?faces-redirect=true";
 }
+   public String redirectAvaliacao(){
+             
+        try {
+            Connection con = DriverManager.getConnection(
+                     "jdbc:derby://localhost:1527/personaltechv1", "root", "root");
+            Statement stmt = con.createStatement();
+            
+            stmt.execute("INSERT INTO TB_PERGUNTA (TXT_PERGUNTA) VALUES ('Alguma vez o médico lhe disse que você possui um problema de coração e lhe recomendou que só fizesse atividade física sob supervisão médica? '),('Tem dor no peito, causada por atividade física?'),('Independente de atividade física, você sentiu dor no peito no último mês?'),('Já perdeu a consiência em alguma ocasião ou sofreu alguma queda em virtude de tonteira?'),('Algum médico já lhe prescreveu medicamento para sua pressão arterial ou para o coração?')");
+            con.close();
 
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+       
+        try {
+            Connection con = DriverManager.getConnection(
+                     "jdbc:derby://localhost:1527/personaltechv1", "root", "root");
+            Statement stmt = con.createStatement();
+            
+            stmt.execute("INSERT INTO TB_AVALIACAO (DT_AVALIACAO,TXT_NOME_PT) VALUES ('2022-01-20','personal-teste')");
+            con.close();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        try {
+            Connection con = DriverManager.getConnection(
+                     "jdbc:derby://localhost:1527/personaltechv1", "root", "root");
+            Statement stmt = con.createStatement();
+            stmt.execute("UPDATE TB_AVALIACAO SET ID_ALUNO=1 WHERE ID_ALUNO IS NULL");
+            con.close();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    return "AvaliarAluno?faces-redirect=true";
+}
 }

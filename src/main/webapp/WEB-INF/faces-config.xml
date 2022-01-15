@@ -167,7 +167,13 @@
             <to-view-id>/index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-    
+     <navigation-rule>
+        <from-view-id>/meusAlunos.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>Avaliar aluno</from-outcome>
+            <to-view-id>/AvaliarAluno.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
     
     
     

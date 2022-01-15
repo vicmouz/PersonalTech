@@ -13,6 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -23,8 +25,14 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "TB_PERGUNTA")
+@NamedQueries(
+        {
+            @NamedQuery(
+                    name = Pergunta.PERGUNTA,
+                    query = "SELECT a FROM Pergunta a ORDER BY a.pergunta"
+            )})
 public class Pergunta implements Serializable {
-
+ public static final String PERGUNTA = "Pergunta";
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = IDENTITY)
