@@ -32,7 +32,7 @@ element.value = selectedValue;
                     
                     <p:inputText  id="resposta" value="#{PerguntaBean.resposta}" /> 
                     <h:inputHidden value="#{pergunta.id}"  />
-                    <p:commandButton value="Salvar" action="#{PerguntaBean.salvarResposta(pergunta.id,PerguntaBean.resposta)}"/>    
+                    <p:commandButton value="Salvar" action="#{PerguntaBean.salvarResposta(pergunta.id)}"/>    
                  
             </c:forEach>
                

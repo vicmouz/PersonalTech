@@ -80,16 +80,18 @@ public class PerguntaBean extends PerguntaServico implements Serializable {
     }
     
     
-    public void salvarResposta( Long idPergunta, RespostasAvaliacao r){
+    public void salvarResposta( Long idPergunta){
         System.out.println("ID PERGUNTA : " +idPergunta);
-        System.out.println("Respostas : " +r.getTxt_resposta());
+        if(idPergunta == 5 || idPergunta == 4){
+        resposta = "Não";}else { resposta =  "Sim";}
+        System.out.println("Respostas : " +resposta);
         
           try {
             Connection con = DriverManager.getConnection(
                      "jdbc:derby://localhost:1527/personaltechv1", "root", "root");
             Statement stmt = con.createStatement();
             
-            stmt.execute("INSERT INTO TB_AV_PERG (TXT_RESP_ALUNO,ID_PERG,ID_AV) VALUES ('"  + r.getTxt_resposta()      +"','" +idPergunta   + "','1')");
+            stmt.execute("INSERT INTO TB_AV_PERG (TXT_RESP_ALUNO,ID_PERG,ID_AV) VALUES ('"  + resposta     +"'," +idPergunta   + ",1)");
             con.close();
 
         } catch (Exception e) {
